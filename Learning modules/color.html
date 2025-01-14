@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Colors</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #e0f7fa, #ffe0b2);
+            margin: 0;
+            padding: 20px;
+            animation: fadeIn 1s; /* Animation for fade-in effect */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border: 2px solid #000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .color-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .nav-button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #00796b;
+            transform: translateY(-2px);
+        }
+        .large-color-box {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 4px solid #000;
+            display: none; /* Initially hidden */
+            transition: background-color 0.3s ease;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .video-section {
+            margin-top: 40px;
+        }
+        .video-section iframe {
+            width: 100%; /* Responsive video */
+            max-width: 600px;
+            height: 315px; /* Fixed height for video */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Learn Colors!</h1>
+
+<div class="large-color-box" id="largeColorBox" aria-live="polite"></div>
+
+<div>
+    <h2>Colors and Their Meanings</h2>
+    <div class="card">
+        <div class="color-box" style="background-color: red;" onclick="showColor('red', 'The color of apples and fire.')"></div>
+        <p><strong>Red</strong>: The color of apples and fire.</p>
+    </div>
+    <div class="card">
+        <div class="color-box" style="background-color: green;" onclick="showColor('green', 'The color of grass and leaves.')"></div>
+        <p><strong>Green</strong>: The color of grass and leaves.</p>
+    </div>
+    <div class="card">
+        <div class="color-box" style="background-color: blue;" onclick="showColor('blue', 'The color of the sky and the ocean.')"></div>
+        <p><strong>Blue</strong>: The color of the sky and the ocean.</p>
+    </div>
+    <div class="card">
+        <div class="color-box" style="background-color: yellow;" onclick="showColor('yellow', 'The color of the sun and bananas.')"></div>
+        <p><strong>Yellow</strong>: The color of the sun and bananas.</p>
+    </div>
+    <div class="card">
+        <div class="color-box" style="background-color: orange;" onclick="showColor('orange', 'The color of carrots and oranges.')"></div>
+        <p><strong>Orange</strong>: The color of carrots and oranges.</p>
+    </div>
+</div>
+
+<div class="navigation">
+    <button class="nav-button" onclick="location.href='1.html'">Home</button>
+    <button class="nav-button" onclick="location.href='colortest.html'">Take Test</button>
+</div>
+
+<!-- Sound effect -->
+<audio id="colorSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+<script>
+    function showColor(color, meaning) {
+        // Play sound
+        document.getElementById('colorSound').play();
+        
+        // Show large color box
+        const largeColorBox = document.getElementById('largeColorBox');
+        largeColorBox.style.backgroundColor = color;
+        largeColorBox.innerHTML = `<strong>${color.charAt(0).toUpperCase() + color.slice(1)}</strong>: ${meaning}`;
+        largeColorBox.style.display = 'block';
+    }
+</script>
+
+<!-- Video Explanation Section -->
+<div class="video-section">
+    <h3>Video Explanation</h3>
+    <p><strong>Refer to this for better understanding:</strong></p>
+    <iframe src="https://www.youtube.com/embed/qhOTU8_1Af4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+</body>
+</html>

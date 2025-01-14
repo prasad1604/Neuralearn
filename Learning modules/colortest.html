@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Test</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #e0f7fa, #ffe0b2);
+            margin: 0;
+            padding: 20px;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .color-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border: 2px solid #000;
+            transition: transform 0.3s;
+        }
+        .test-option {
+            margin: 10px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .test-option:hover {
+            background-color: #e6f7ff;
+            transform: translateY(-2px);
+        }
+        .correct {
+            background-color: #c8e6c9; /* Green */
+        }
+        .incorrect {
+            background-color: #ffccbc; /* Red */
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .nav-button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #00796b;
+            transform: translateY(-2px);
+        }
+        .question-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            animation: slideIn 0.5s;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .progress {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            transition: width 0.5s;
+        }
+        .timer {
+            font-size: 1.5rem;
+            color: #ff5722;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Test Your Knowledge!</h1>
+<p>Answer the following questions:</p>
+
+<div class="progress">
+    <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+</div>
+<div class="timer" id="timer">Time Left: 10s</div>
+
+<div id="testArea" class="question-card"></div>
+
+<div class="navigation">
+    <button class="nav-button" onclick="location.href='1.html'">Home</button>
+    <button class="nav-button" onclick="goBack()">Back</button>
+</div>
+
+<script>
+    const questions = [
+        { color: 'red', options: ['Red', 'Green', 'Blue'], answer: 'Red' },
+        { color: 'green', options: ['Yellow', 'Green', 'Blue'], answer: 'Green' },
+        { color: 'blue', options: ['Orange', 'Blue', 'Red'], answer: 'Blue' },
+        { color: 'yellow', options: ['Purple', 'Yellow', 'Green'], answer: 'Yellow' },
+        { color: 'orange', options: ['Orange', 'Red', 'Yellow'], answer: 'Orange' },
+    ];
+
+    let score = 0;
+    let currentQuestion = 0;
+    let timerInterval;
+    const timeLimit = 10; // 10 seconds per question
+
+    // Shuffle questions
+    function shuffleQuestions(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+    
+    function startTimer() {
+        let timeLeft = timeLimit;
+        document.getElementById('timer').innerText = `Time Left: ${timeLeft}s`;
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            document.getElementById('timer').innerText = `Time Left: ${timeLeft}s`;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                checkAnswer(''); // Automatically select an empty answer if time runs out
+            }
+        }, 1000);
+    }
+
+    function showQuestion() {
+        const question = questions[currentQuestion];
+        const testArea = document.getElementById('testArea');
+        testArea.innerHTML = `
+            <p><strong>What color is this?</strong></p>
+            <div class="color-box" style="background-color: ${question.color};"></div>
+            ${question.options.map(option => `<div class="test-option" onclick="checkAnswer('${option}')">${option}</div>`).join('')}
+        `;
+        
+        // Update progress bar
+        const progressPercentage = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progressPercentage}%`;
+        document.getElementById('progressBar').innerText = `${Math.round(progressPercentage)}%`;
+
+        // Start timer
+        startTimer();
+    }
+
+    function checkAnswer(selectedColor) {
+        clearInterval(timerInterval); // Stop timer
+        const question = questions[currentQuestion];
+        const testOptions = document.querySelectorAll('.test-option');
+
+        // Provide feedback on the selected option
+        testOptions.forEach(option => {
+            if (option.innerText === question.answer) {
+                option.classList.add('correct');
+            } else if (option.innerText === selectedColor) {
+                option.classList.add('incorrect');
+            }
+            option.style.pointerEvents = 'none'; // Disable clicking after selection
+        });
+
+        // Update score if the answer is correct
+        if (selectedColor === question.answer) {
+            score++;
+        }
+
+        // Move to the next question after a short delay
+        currentQuestion++;
+        setTimeout(() => {
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }, 1000); // 1 second delay before showing the next question
+    }
+
+    function showResult() {
+        // Redirect to results page with score as a URL parameter
+        window.location.href = `result.html?score=${score}&total=${questions.length}`;
+    }
+
+    // Initialize quiz
+    shuffleQuestions(questions);
+    showQuestion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #e0f7fa, #ffe0b2);
+            margin: 0;
+            padding: 20px;
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .nav-button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #00796b;
+            transform: translateY(-2px);
+        }
+        .progress {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+            height: 30px; /* Increased height for better visibility */
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            transition: width 0.5s, background-color 0.5s;
+        }
+        #confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .motivational-quote {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #ff5722;
+            font-weight: bold;
+        }
+        .module-completion-message {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Test Results</h1>
+<div id="resultMessage"></div>
+
+<!-- Progress Bar for Test Score -->
+<div id="testScoreProgress" class="progress" style="display: none;">
+    <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+</div>
+
+<!-- Message for Module Completion -->
+<div class="module-completion-message">
+    <p>🎉 You have successfully completed your 3rd module! 🎉</p>
+</div>
+
+<!-- Progress Bar for Module Completion -->
+<div id="moduleProgressBarContainer" class="progress" style="display: none;">
+    <div id="moduleProgressBar" class="progress-bar" style="width: 75%;">75%</div>
+</div>
+
+<div id="confetti"></div>
+<div class="motivational-quote" id="quote"></div>
+
+<div class="navigation">
+    <button class="nav-button" onclick="location.href='1.html'">Home</button>
+    <button class="nav-button" onclick="location.href='colortest.html'">Retest</button>
+    <button class="nav-button" onclick="location.href='colortest2.html'">Practice coloring</button>
+</div>
+
+<script>
+    // Function to get URL parameters
+    function getUrlParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const regex = /([^&=]+)=([^&]*)/g;
+        let m;
+        while (m = regex.exec(queryString)) {
+            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        return params;
+    }
+
+    // Display appreciation message based on score
+    function displayResult() {
+        const params = getUrlParams();
+        const score = parseInt(params.score);
+        const total = parseInt(params.total);
+        const resultMessage = document.getElementById('resultMessage');
+        const progressBar = document.getElementById('progressBar');
+        const moduleProgressBar = document.getElementById('moduleProgressBar');
+        const moduleProgressBarContainer = document.getElementById('moduleProgressBarContainer');
+        const quote = document.getElementById('quote');
+        const testScoreProgress = document.getElementById('testScoreProgress');
+
+        // Update progress bar for test score
+        const progressPercentage = (score / total) * 100;
+        progressBar.style.width = `${progressPercentage}%`;
+        progressBar.innerText = `${score} out of ${total}`;
+
+        // Show or hide the test score progress bar based on score
+        if (score === total) {
+            testScoreProgress.style.display = 'block'; // Show progress bar if all answers are correct
+            moduleProgressBarContainer.style.display = 'block'; // Show module progress bar
+        } else {
+            testScoreProgress.style.display = 'none'; // Hide progress bar if not all answers are correct
+            moduleProgressBarContainer.style.display = 'none'; // Hide module progress bar if not all answers are correct
+        }
+
+        if (score === total) {
+            resultMessage.innerHTML = "<h2>🎉 Excellent Job! 🎉</h2><p>You answered all questions correctly!</p>";
+            quote.innerText = "Success is not just about what you accomplish, but what you inspire others to do!";
+            document.body.style.backgroundColor = "#a5d6a7"; // Success color
+            showConfetti();
+        } else {
+            resultMessage.innerHTML = `<h2>Try Again!</h2><p>You got ${score} out of ${total} correct.</p>`;
+            quote.innerText = "Every setback is a setup for a comeback!";
+        }
+    }
+
+    function showConfetti() {
+        const confetti = document.getElementById('confetti');
+        confetti.style.opacity = '1';
+        // Simple confetti effect
+        for (let i = 0; i < 100; i++) {
+            const confettiPiece = document.createElement('div');
+            confettiPiece.className = 'confetti';
+            confettiPiece.style.width = `${Math.random() * 10 + 5}px`;
+            confettiPiece.style.height = `${Math.random() * 10 + 5}px`;
+            confettiPiece.style.position = 'absolute';
+            confettiPiece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confettiPiece.style.left = `${Math.random() * 100}vw`;
+            confettiPiece.style.top = `${Math.random() * 100}vh`;
+            confettiPiece.style.opacity = '0.8';
+            confettiPiece.style.transition = 'transform 1s';
+            confettiPiece.style.transform = `translateY(${Math.random() * 100 + 50}px)`;
+            confetti.appendChild(confettiPiece);
+        }
+    }
+
+    // Show result on page load
+    displayResult();
+</script>
+
+</body>
+</html>

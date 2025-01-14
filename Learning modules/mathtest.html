@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Test</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: linear-gradient(to right, #74ebd5, #9face6); /* Gradient background */
+      font-family: 'Arial', sans-serif;
+    }
+    .test-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+      color: #343a40;
+    }
+    .question {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+    }
+    .response-message {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .navigation-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn {
+      transition: transform 0.2s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .timer {
+      font-size: 1.5rem;
+      color: #dc3545; /* Red color for timer */
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="test-container">
+  <h2>Math Test</h2>
+  <div class="timer" id="timer">Time Left: <span id="time">60</span> seconds</div>
+  <form id="mathTestForm">
+    <div id="questions"></div>
+    <button type="submit" class="btn btn-success">Submit Answers</button>
+    <button type="button" class="btn btn-warning" id="resetButton">Reset Test</button>
+    <div id="completionMessage" class="response-message" style="display:none;"></div>
+  </form>
+</div>
+
+<audio id="backgroundMusic" loop>
+  <source src="background-music.mp3" type="audio/mpeg"> <!-- Add your own music file -->
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const questions = [
+    { question: "1. What is 2 + 2?", answer: 4 },
+    { question: "2. What is 3 - 1?", answer: 2 },
+    { question: "3. How many sides does a triangle have?", answer: 3 },
+    { question: "4. What is 5 + 3?", answer: 8 },
+    { question: "5. What is 6 - 2?", answer: 4 }
+  ];
+
+  const createQuestionElements = () => {
+    const questionsContainer = document.getElementById('questions');
+    questions.forEach((q, index) => {
+      const questionDiv = document.createElement('div');
+      questionDiv.classList.add('question');
+      questionDiv.innerHTML = `
+        <label>${q.question}</label>
+        <input type="number" class="form-control" id="answer${index}" required>
+        <div id="responseMessage${index}" class="response-message"></div>
+      `;
+      questionsContainer.appendChild(questionDiv);
+    });
+  };
+
+  let timer;
+  const startTimer = () => {
+    let timeLeft = 60; // 60 seconds for the test
+    document.getElementById('time').textContent = timeLeft;
+
+    timer = setInterval(() => {
+      timeLeft--;
+      document.getElementById('time').textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        alert("Time's up! Please submit your answers.");
+        document.getElementById('mathTestForm').dispatchEvent(new Event('submit'));
+      }
+    }, 1000);
+  };
+
+  const checkAnswers = (event) => {
+    event.preventDefault();
+    clearInterval(timer); // Stop the timer when the test is submitted
+    let correctCount = 0;
+    let allCorrect = true; // Track if all answers are correct
+    questions.forEach((q, index) => {
+      const userAnswer = parseInt(document.getElementById(`answer${index}`).value);
+      const responseMessage = document.getElementById(`responseMessage${index}`);
+      if (userAnswer === q.answer) {
+        responseMessage.innerHTML = "Correct!";
+        responseMessage.style.color = "green";
+        correctCount++;
+      } else {
+        responseMessage.innerHTML = "Incorrect. The correct answer is " + q.answer + ".";
+        responseMessage.style.color = "red";
+        allCorrect = false; // At least one answer is incorrect
+      }
+    });
+    
+    const completionMessage = document.getElementById('completionMessage');
+    completionMessage.innerHTML = `You got ${correctCount} out of ${questions.length} correct!`;
+    completionMessage.style.display = 'block';
+
+    if (allCorrect) {
+      // Redirect to mathresult.html if all answers are correct
+      window.location.href = 'mathresult.html';
+    }
+  };
+
+  const resetTest = () => {
+    document.getElementById('mathTestForm').reset();
+    document.getElementById('completionMessage').style.display = 'none';
+    document.getElementById('questions').innerHTML = '';
+    createQuestionElements();
+    startTimer();
+    document.getElementById('time').textContent = '60';
+  };
+
+  document.getElementById('resetButton').addEventListener('click', resetTest);
+  document.getElementById('mathTestForm').addEventListener('submit', checkAnswers);
+
+  // Initialize the test
+  createQuestionElements();
+  startTimer();
+  document.getElementById('backgroundMusic').play(); // Play background music
+</script>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

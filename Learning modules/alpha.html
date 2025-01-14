@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabet Learning Module</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #00796b;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .alphabet-card {
+      display: inline-block;
+      width: 150px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #e6f7ff;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .alphabet-card:hover {
+      background-color: #b3e0ff;
+      cursor: pointer;
+      transform: translateY(-5px);
+    }
+    .letter {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #004d40;
+    }
+    .word {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #00695c;
+    }
+    .hover-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.6);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .alphabet-card:hover .hover-effect {
+      opacity: 1;
+    }
+    .navigation {
+      margin-top: 30px;
+    }
+    .nav-button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00796b;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .nav-button:hover {
+      background-color: #004d40;
+    }
+    .video-section {
+      margin-top: 40px;
+    }
+    .video-section iframe {
+      width: 100%; /* Responsive video */
+      max-width: 600px;
+      height: 315px; /* Fixed height for video */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Learn Alphabets A to Z</h1>
+
+  <div class="alphabet-cards">
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">A</div>
+      <div class="word">Apple</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">B</div>
+      <div class="word">Ball</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">C</div>
+      <div class="word">Cat</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">D</div>
+      <div class="word">Dog</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">E</div>
+      <div class="word">Elephant</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">F</div>
+      <div class="word">Fish</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">G</div>
+      <div class="word">Goat</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">H</div>
+      <div class="word">Hat</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">I</div>
+      <div class="word">Ice cream</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">J</div>
+      <div class="word">Jelly</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">K</div>
+      <div class="word">Kite</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">L</div>
+      <div class="word">Lion</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">M</div>
+      <div class="word">Monkey</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">N</div>
+      <div class="word">Nest</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">O</div>
+      <div class="word">Orange</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">P</div>
+      <div class="word">Parrot</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">Q</div>
+      <div class="word">Queen</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">R</div>
+      <div class="word">Rabbit</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">S</div>
+      <div class="word">Sun</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">T</div>
+      <div class="word">Tiger</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">U</div>
+      <div class="word">Umbrella</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">V</div>
+      <div class="word">Van</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">W</div>
+      <div class="word">Whale</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">X</div>
+      <div class="word">Xylophone</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">Y</div>
+      <div class="word">Yak</div>
+    </div>
+    <div class="alphabet-card">
+      <div class="hover-effect"></div>
+      <div class="letter">Z</div>
+      <div class="word">Zebra</div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <button class="nav-button" onclick="location.href='1.html'">Home</button>
+    <button class="nav-button" onclick="location.href='alphatest.html'">Test</button>
+  </div>
+
+  <!-- Video Explanation Section -->
+  <div class="video-section">
+    <h3>Video Explanation</h3>
+    <p><strong>Refer to this video for better understanding:</strong></p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hq3yfQnllfQ?si=x6gqUyw_rbeg8FTK&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+</body>
+</html>

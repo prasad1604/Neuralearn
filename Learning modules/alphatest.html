@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #00796b;
+        }
+        .question-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            transition: transform 0.3s;
+        }
+        .question-container:hover {
+            transform: scale(1.02);
+        }
+        .question {
+            margin: 20px 0;
+            font-weight: bold;
+            color: #004d40;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .option {
+            display: block;
+            background-color: #b2dfdb;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .option:hover {
+            background-color: #80cbc4;
+            transform: scale(1.02);
+        }
+        .option:active {
+            transform: scale(0.98);
+        }
+        .navigation {
+            margin-top: 20px;
+        }
+        .nav-button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: 1px solid #004d40;
+            border-radius: 5px;
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Alphabet Test</h1>
+
+<form id="quizForm">
+    <div class="question-container">
+        <div class="question">1. What is the first letter of the alphabet?</div>
+        <div class="options">
+            <button type="button" class="option" onclick="selectAnswer('q1', 'A')">A</button>
+            <button type="button" class="option" onclick="selectAnswer('q1', 'B')">B</button>
+            <button type="button" class="option" onclick="selectAnswer('q1', 'C')">C</button>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question">2. What letter comes after C?</div>
+        <div class="options">
+            <button type="button" class="option" onclick="selectAnswer('q2', 'D')">D</button>
+            <button type="button" class="option" onclick="selectAnswer('q2', 'E')">E</button>
+            <button type="button" class="option" onclick="selectAnswer('q2', 'F')">F</button>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question">3. What letter is known as the vowel in the word "Apple"?</div>
+        <div class="options">
+            <button type="button" class="option" onclick="selectAnswer('q3', 'A')">A</button>
+            <button type="button" class="option" onclick="selectAnswer('q3', 'P')">P</button>
+            <button type="button" class="option" onclick="selectAnswer('q3', 'L')">L</button>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question">4. Which letter comes before G?</div>
+        <div class="options">
+            <button type="button" class="option" onclick="selectAnswer('q4', 'F')">F</button>
+            <button type="button" class="option" onclick="selectAnswer('q4', 'H')">H</button>
+            <button type="button" class="option" onclick="selectAnswer('q4', 'I')">I</button>
+        </div>
+    </div>
+
+    <div class="question-container">
+        <div class="question">5. What is the last letter of the alphabet?</div>
+        <div class="options">
+            <button type="button" class="option" onclick="selectAnswer('q5', 'Z')">Z</button>
+            <button type="button" class="option" onclick="selectAnswer('q5', 'Y')">Y</button>
+            <button type="button" class="option" onclick="selectAnswer('q5', 'X')">X</button>
+        </div>
+    </div>
+
+    <button type="button" class="nav-button" onclick="submitQuiz()">Submit</button>
+</form>
+
+<div class="navigation">
+    <button class="nav-button" onclick="location.href='1.html'">Home</button>
+</div>
+
+<script>
+let answers = {
+    q1: 'A',
+    q2: 'D',
+    q3: 'A',
+    q4: 'F',
+    q5: 'Z'
+};
+
+let selectedAnswers = {
+    q1: null,
+    q2: null,
+    q3: null,
+    q4: null,
+    q5: null
+};
+
+function selectAnswer(question, answer) {
+    selectedAnswers[question] = answer;
+    const options = document.querySelectorAll(`.options button`);
+    options.forEach(option => {
+        option.style.backgroundColor = ""; // Reset color
+    });
+    // Highlight the selected button
+    event.target.style.backgroundColor = "#004d40";
+    event.target.style.color = "#fff";
+}
+
+function submitQuiz() {
+    let score = 0;
+    
+    for (let question in answers) {
+        if (selectedAnswers[question] === answers[question]) {
+            score++;
+        }
+    }
+
+    if (score === Object.keys(answers).length) {
+        // All answers correct
+        window.location.href = 'alpharesult.html'; // Redirect to appreciation page
+    } else {
+        alert("Some answers are incorrect. Please try again!");
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* styles.css */
+body {
+  background-image: url('assets/img/cloudStar.png');
+  background-size: 100% 100vh; /* or 100vw 100vh */
+  background-repeat: no-repeat; /* add this to prevent the image from repeating */
+  height: 100vh; /* add this to set the body's height to the full viewport height */
+  margin: 0; /* add this to remove any default margin */
+}
+
+.games-section {
+    background-color: #f7f7f7;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .game-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 80%; /* Set the height to your desired value */
+    width: 100%;
+}
+  
+  .game-card img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .game-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .game-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .game-card a {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .game-card a:hover {
+    background-color: #3e8e41;
+  }

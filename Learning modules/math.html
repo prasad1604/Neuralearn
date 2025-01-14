@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning Module</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <!-- Audio for sound effects -->
+  <audio id="correctSound" src="correct.mp3" preload="auto"></audio>
+  <audio id="incorrectSound" src="incorrect.mp3" preload="auto"></audio>
+  <audio id="buttonClickSound" src="button-click.mp3" preload="auto"></audio>
+
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffefba, #ffffff); /* Light gradient background */
+      font-family: 'Arial', sans-serif;
+    }
+    .lesson-content {
+      padding: 30px;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.9);
+      margin: 20px auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 700px; /* Fixed max width */
+    }
+    h2, h3 {
+      color: #007bff; /* Blue color for headings */
+      text-align: center;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    p {
+      color: #555; /* Darker text for better readability */
+      font-size: 1.1rem;
+    }
+    .navigation-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 12px 25px;
+      margin: 5px;
+      border-radius: 25px; /* Rounded buttons */
+      transition: transform 0.2s, background-color 0.3s;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background-color: #007bff; /* Primary button color */
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+    .btn-secondary {
+      background-color: #6c757d; /* Secondary button color */
+      border: none;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268; /* Darker gray on hover */
+    }
+    .response-message {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+    #completion-message {
+      display: none; 
+      text-align: center;
+      margin-top: 50px;
+      font-size: 1.5rem;
+      color: #28a745; /* Green */
+    }
+    #testButton {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+      text-align: center;
+    }
+    img {
+      border-radius: 10px; /* Rounded image corners */
+      margin-top: 20px;
+    }
+    .video-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .video-section iframe {
+      width: 100%; /* Responsive video */
+      max-width: 600px;
+      height: 315px; /* Fixed height for video */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="math" class="lesson-content">
+    <h2>Math Lessons</h2>
+  
+    <!-- Lesson 1: Learn to Count with Hands -->
+    <div id="math-lesson1">
+      <h3>Lesson 1: Learn to Count with Hands</h3>
+      <p><strong>Let's learn how to count numbers using your fingers. Start by holding up one finger, then two, and keep counting up to ten.</strong></p>
+      <img src="math.png" alt="Counting with Hands" class="img-fluid">
+      <p><strong>Try to count the number with your finger.</strong></p>
+  
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <button class="btn btn-secondary" onclick="location.href='1.html'">Home</button>
+        <button class="btn btn-primary" onclick="showLesson(2); playSound('buttonClickSound')">Next Lesson</button>
+      </div>
+    </div>
+  
+    <!-- Lesson 2: Numbers and Objects -->
+    <div id="math-lesson2" style="display:none;">
+      <h3>Lesson 2: Numbers and Objects</h3>
+      <p><strong>In this lesson, you will match numbers with objects. If you see the number <strong>2</strong>, try to find two apples, two toys, or two fingers on your hand.</strong></p>
+      <img src="math2.png" alt="Numbers and Objects" class="img-fluid" style="width: 100%; max-width: 600px; height: 400px;">
+      <p><strong>Can you count how many apples are in this picture?</strong></p>
+  
+      <!-- Chatbox for input -->
+      <div id="chatbox">
+        <label for="userAnswer">Your Answer:</label>
+        <input type="text" id="userAnswer" placeholder="Enter your answer" class="form-control">
+        <button class="btn btn-primary" onclick="checkAnswer(); playSound('buttonClickSound')">Submit</button>
+      </div>
+  
+      <!-- Response message -->
+      <div id="responseMessage" class="response-message"></div>
+  
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <button class="btn btn-primary" onclick="showLesson(1); playSound('buttonClickSound')">Previous Lesson</button>
+        <button class="btn btn-secondary" onclick="location.href='1.html'">Home</button>
+        <button class="btn btn-primary" onclick="showLesson(3); playSound('buttonClickSound')">Next Lesson</button>
+      </div>
+    </div>
+  
+    <!-- Lesson 3: Recognizing Shapes -->
+    <div id="math-lesson3" style="display:none;">
+      <h3>Lesson 3: Recognizing Shapes</h3>
+      <p><strong>Shapes are everywhere! Look at these shapes: Circle, Square, and Triangle. Can you find things around your house that match these shapes?</strong></p>
+      <img src="math3.jpg" alt="Recognizing Shapes" class="img-fluid">
+      <p><strong>Let's practice! How many circles can you see in the image?</strong></p>
+  
+      <!-- Chatbox for answer input -->
+      <div id="chatbox-section">
+        <label for="circleInput">Your Answer:</label>
+        <input type="text" id="circleInput" name="circleInput" placeholder="Type your answer here..." class="form-control">
+        <button class="btn btn-primary" onclick="checkCircleAnswer(); playSound('buttonClickSound')">Submit</button>
+      </div>
+  
+      <!-- Response message -->
+      <div id="responseMessageCircles" class="response-message"></div>
+  
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <button class="btn btn-primary" onclick="showLesson(2); playSound('buttonClickSound')">Previous Lesson</button>
+        <button class="btn btn-secondary" onclick="location.href='1.html'">Home</button>
+        <button class="btn btn-primary" onclick="showLesson(4); playSound('buttonClickSound')">Next Lesson</button>
+      </div>
+    </div>
+  
+    <!-- Lesson 4: Simple Addition -->
+    <div id="math-lesson4" style="display:none;">
+      <h3>Lesson 4: Simple Addition</h3>
+      <p><strong>Addition means putting two numbers together. Let’s start by adding small numbers. For example, if you have 1 apple and someone gives you 1 more, how many apples do you have in total?</strong></p>
+      <img src="math4.png" alt="Simple Addition" class="img-fluid" style="width: 100%; max-width: 600px;">
+      <p><strong>Try adding these: 2 + 1 = ?</strong></p>
+      
+      <!-- Chatbox for answer input -->
+      <div id="chatbox-section-addition">
+        <label for="additionInput">Your Answer:</label>
+        <input type="text" id="additionInput" name="additionInput" placeholder="Type your answer here..." class="form-control">
+        <button class="btn btn-primary" onclick="checkAdditionAnswer(); playSound('buttonClickSound')">Submit</button>
+      </div>
+  
+      <!-- Response message -->
+      <div id="responseMessageAddition" class="response-message"></div>
+  
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <button class="btn btn-primary" onclick="showLesson(3); playSound('buttonClickSound')">Previous Lesson</button>
+        <button class="btn btn-secondary" onclick="location.href='1.html'">Home</button>
+        <button class="btn btn-primary" onclick="showLesson(5); playSound('buttonClickSound')">Next Lesson</button>
+      </div>
+    </div>
+  
+    <!-- Lesson 5: Simple Subtraction -->
+    <div id="math-lesson5" style="display:none;">
+      <h3>Lesson 5: Simple Subtraction</h3>
+      <p><strong>Subtraction means taking away. If you have 3 apples and you give 1 away, how many do you have left?</strong></p>
+      <img src="subtract.png" alt="Simple Subtraction" class="img-fluid">
+      <p><strong>Try this subtraction: 5 - 2 = ?</strong></p>
+  
+      <!-- Chatbox for answer input -->
+      <div id="chatbox-section-subtraction">
+        <label for="subtractionInput">Your Answer:</label>
+        <input type="text" id="subtractionInput" name="subtractionInput" placeholder="Type your answer here..." class="form-control">
+        <button class="btn btn-primary" onclick="checkSubtractionAnswer(); playSound('buttonClickSound')">Submit</button>
+      </div>
+  
+      <!-- Response message -->
+      <div id="responseMessageSubtraction" class="response-message"></div>
+  
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <button class="btn btn-primary" onclick="showLesson(4); playSound('buttonClickSound')">Previous Lesson</button>
+        <button class="btn btn-secondary" onclick="location.href='1.html'">Home</button>
+        <button class="btn btn-primary" id="testButton" onclick="window.location.href='mathtest.html'; playSound('buttonClickSound')">Take the Test</button>
+      </div>
+    </div>
+  
+    <!-- Completion Message -->
+    <div id="completion-message">
+      Well done! You've completed the math lessons.
+    </div>
+
+    <!-- Video Explanation Section -->
+    <div class="video-section">
+      <h3>Video Explanation</h3>
+      <p><strong>Video explanation for basic addition and subtraction:</strong></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/mjlsSYLLOSE?si=MTpWkDmFcT8ObWn9&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    </div>
+  </div>
+
+  <!-- JavaScript to control lessons and sounds -->
+  <script>
+    let currentLesson = 1;
+
+    function showLesson(lesson) {
+      document.getElementById(`math-lesson${currentLesson}`).style.display = 'none';
+      currentLesson = lesson;
+      document.getElementById(`math-lesson${currentLesson}`).style.display = 'block';
+      if (currentLesson === 5) {
+        document.getElementById('testButton').style.display = 'block'; // Show test button after last lesson
+      }
+      if (currentLesson === 1) {
+        document.getElementById('completion-message').style.display = 'none'; // Hide completion message in the first lesson
+      }
+    }
+
+    function goHome() {
+      // Logic to navigate to the home page or reset the module
+      alert('Going back to home!');
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById('userAnswer').value;
+      const correctAnswer = '2'; // Example correct answer
+      const responseMessage = document.getElementById('responseMessage');
+
+      if (userAnswer === correctAnswer) {
+        responseMessage.innerText = 'Correct! 🎉';
+        document.getElementById('correctSound').play();
+      } else {
+        responseMessage.innerText = 'Try again! ❌';
+        document.getElementById('incorrectSound').play();
+      }
+    }
+
+    function checkCircleAnswer() {
+      const userAnswer = document.getElementById('circleInput').value;
+      const correctAnswer = '6'; // Example correct answer
+      const responseMessage = document.getElementById('responseMessageCircles');
+
+      if (userAnswer === correctAnswer) {
+        responseMessage.innerText = 'Correct! 🎉';
+        document.getElementById('correctSound').play();
+      } else {
+        responseMessage.innerText = 'Try again! ❌';
+        document.getElementById('incorrectSound').play();
+      }
+    }
+
+    function checkAdditionAnswer() {
+      const userAnswer = document.getElementById('additionInput').value;
+      const correctAnswer = '3'; // Example correct answer
+      const responseMessage = document.getElementById('responseMessageAddition');
+
+      if (userAnswer === correctAnswer) {
+        responseMessage.innerText = 'Correct! 🎉';
+        document.getElementById('correctSound').play();
+      } else {
+        responseMessage.innerText = 'Try again! ❌';
+        document.getElementById('incorrectSound').play();
+      }
+    }
+
+    function checkSubtractionAnswer() {
+      const userAnswer = document.getElementById('subtractionInput').value;
+      const correctAnswer = '3'; // Example correct answer
+      const responseMessage = document.getElementById('responseMessageSubtraction');
+
+      if (userAnswer === correctAnswer) {
+        responseMessage.innerText = 'Correct! 🎉';
+        document.getElementById('correctSound').play();
+      } else {
+        responseMessage.innerText = 'Try again! ❌';
+        document.getElementById('incorrectSound').play();
+      }
+    }
+
+    function playSound(soundId) {
+      const sound = document.getElementById(soundId);
+      sound.play();
+    }
+  </script>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

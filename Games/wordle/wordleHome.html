@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="wordleStyle.css">
+  <script src="wordleScript.js" defer></script>
+  <title>Wordle</title>
+  
+
+</head>
+<body>
+  <div class="alert-container" data-alert-container></div>
+  <div data-guess-grid class="guess-grid">
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+  </div>
+  <div data-keyboard class="keyboard">
+    <button class="key" data-key="Q">Q</button>
+    <button class="key" data-key="W">W</button>
+    <button class="key" data-key="E">E</button>
+    <button class="key" data-key="R">R</button>
+    <button class="key" data-key="T">T</button>
+    <button class="key" data-key="Y">Y</button>
+    <button class="key" data-key="U">U</button>
+    <button class="key" data-key="I">I</button>
+    <button class="key" data-key="O">O</button>
+    <button class="key" data-key="P">P</button>
+    <div class="space"></div>
+    <button class="key" data-key="A">A</button>
+    <button class="key" data-key="S">S</button>
+    <button class="key" data-key="D">D</button>
+    <button class="key" data-key="F">F</button>
+    <button class="key" data-key="G">G</button>
+    <button class="key" data-key="H">H</button>
+    <button class="key" data-key="J">J</button>
+    <button class="key" data-key="K">K</button>
+    <button class="key" data-key="L">L</button>
+    <div class="space"></div>
+    <button data-enter class="key large">Enter</button>
+    <button class="key" data-key="Z">Z</button>
+    <button class="key" data-key="X">X</button>
+    <button class="key" data-key="C">C</button>
+    <button class="key" data-key="V">V</button>
+    <button class="key" data-key="B">B</button>
+    <button class="key" data-key="N">N</button>
+    <button class="key" data-key="M">M</button>
+    <button data-delete class="key large">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path fill="var(--color-tone-1)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="container" style="position: absolute; top: 0; left: 0; padding: 20px; margin: 20px; max-width: 600px; background-color: #fffb00; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <h2 class="text-center">🎉 Wordle Game Rules! 🎉</h2>
+    <div class="rules">
+        <button id="toggleRules" class="btn btn-lg btn-primary">Show/Hide Rules</button>
+        <div id="rulesContent" style="display: block; margin-top: 10px;">
+            <ul>
+                <li><strong>🎯 The Goal:</strong> Guess the secret five-letter word! You have 6 tries to get it right!</li>
+                <li><strong>🧩 How to Play:</strong>
+                    <ul>
+                        <li>Type in any five-letter word and hit "Enter"!</li>
+                        <li>Keep guessing until you find the hidden word!</li>
+                    </ul>
+                </li>
+                <li><strong>🔍 Clue Time:</strong> After each guess, you’ll get clues:
+                    <ul>
+                        <li><span style="color: green;">🟩 Green:</span> You got a letter in the right spot!</li>
+                        <li><span style="color: orange;">🟨 Yellow:</span> You found a letter, but it's in the wrong spot!</li>
+                        <li><span style="color: gray;">⬜ Gray:</span> Nope! That letter isn’t in the word!</li>
+                    </ul>
+                </li>
+                <li><strong>⏳ Take Your Time:</strong> Think carefully! You want to guess the word, not just any word!</li>
+                <li><strong>🤔 Need Help?</strong> You can ask for hints, but use them wisely!</li>
+                <li><strong>🏆 Winning:</strong> If you guess the word in 6 tries or less, you win! Yay!</li>
+                <li><strong>💔 Losing:</strong> If you run out of guesses, don’t worry! The word will be revealed!</li>
+                <li><strong>🎈 Have Fun:</strong> Remember, it’s just a game! Enjoy every guess and have a blast!</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to toggle the visibility of the rules
+    document.getElementById('toggleRules').addEventListener('click', function() {
+        const rulesContent = document.getElementById('rulesContent');
+        if (rulesContent.style.display === 'none') {
+            rulesContent.style.display = 'block';
+            this.textContent = 'Hide Rules'; // Change button text
+        } else {
+            rulesContent.style.display = 'none';
+            this.textContent = 'Show Rules'; // Change button text
+        }
+    });
+</script>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+</body>
+</html>

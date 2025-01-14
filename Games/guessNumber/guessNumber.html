@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="generate();">
+  <h1>Guess The Number</h1>
+  <h2>Between 0 and 20</h2>
+ <h5 id="nomoreattempts"></h5>
+  <div id="resultarea">
+  <section id="result"></section>
+    <section id="result2">
+      <h4 id="status"></h4>
+    </section>
+    
+    
+    <section id="result3">
+      <p id="stats">Game Stats:</p>
+      <div id="attempt">Attempts:<span id="attemptcounter"></span></div>
+      <div id="guessessofar">Your Guesses:<span id="guesscounter"></span></div>
+       <div id="score">Wins:<span id="scorecounter"></span></div>
+      <div id="streak">Win Streak:<span id="streakcounter"></span></div>
+    </section>
+  
+ 
+ </div>
+   
+  <div id="inputarea"> 
+    <input type="number" placeholder="Your Guess Here..." id="guess">
+  <button onclick="check()" id="submit">Submit Guess</button>
+  <button onclick="reveal()" id="giveup"> Give Up?</button>
+ 
+  <button onclick="generate()" id="other"> Try Another Number</button>
+  </div>
+    <script src="script.js"></script>
+</body>
+</html>

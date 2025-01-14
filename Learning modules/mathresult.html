@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congratulations!</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #dfe4ea, #ced6e0); /* Soft blue-to-gray gradient */
+      font-family: 'Arial', sans-serif;
+      color: #333; /* Dark gray text */
+    }
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9); /* White background with slight transparency */
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1); /* Lighter shadow for a softer look */
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem; /* Larger font size for the title */
+      margin-bottom: 20px;
+      color: #2c3e50; /* Navy blue for headings */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Softer text shadow */
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #7f8c8d; /* Lighter gray for the paragraph */
+      text-shadow: none;
+    }
+    .btn {
+      padding: 12px 25px;
+      margin: 5px;
+      border-radius: 25px; /* Rounded buttons */
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .btn-primary {
+      background-color: #34495e; /* Muted navy blue */
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #2c3e50; /* Slightly darker navy on hover */
+    }
+    .btn-success {
+      background-color: #27ae60; /* Muted olive green */
+      border: none;
+    }
+    .btn-success:hover {
+      background-color: #229954; /* Darker olive green on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Congratulations!</h1>
+    <p>You have successfully completed the Math Module!</p>
+    <p>Your hard work and dedication are commendable!</p>
+    <div>
+      <button class="btn btn-primary" onclick="location.href='1.html'">Home</button>
+      <button class="btn btn-success" onclick="location.href='mathtest.html'">Retest</button>
+    </div>
+  </div>
+
+  <script>
+    function goHome() {
+      // Redirect to homepage or another page
+      window.location.href = 'homepage.html'; // Change to your home page URL
+    }
+
+    function retest() {
+      // Redirect to the math test page
+      window.location.href = 'mathtest.html'; // Change to your math test page URL
+    }
+  </script>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
