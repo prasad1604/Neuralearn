@@ -1,0 +1,45 @@
+body {
+  font-family: 'Comic Sans MS', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #FF6B6B;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  color: #FFD93D !important;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  color: #FFE156 !important;
+  font-weight: bold;
+}
+
+button.btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 15px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+i.bi {
+  font-size: 1.5rem !important;
+  vertical-align: middle; 
+  display: inline-block;
+}

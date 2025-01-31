@@ -1,0 +1,16 @@
+footer {
+    background-color: #FF6B6B;
+    color: white;
+    padding: 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer p {
+    color: white;
+    font-size: 1.2rem;
+}
+
