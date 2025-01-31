@@ -1,0 +1,23 @@
+#h2-contact, #p-contact {
+  color: #FF69B4;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.form-label {
+  color: #FF69B4;
+}
+
+#button-contact {
+  background-color: #FF69B4;
+  border-color: #FF69B4;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+#button-contact:hover {
+  background-color: #FF1493;
+  border-color: #FF1493;
+}
+
+textarea {
+  border-radius: 10px;
+}

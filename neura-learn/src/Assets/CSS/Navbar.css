@@ -23,6 +23,7 @@ button.btn {
   font-size: 1.2rem;
   font-weight: bold;
   border-radius: 15px;
+  margin: 5px;
   animation: bounce 1s infinite;
 }
 

@@ -1,0 +1,31 @@
+.carousel-caption h2 {
+    font-size: 2.5rem;
+    color: #FFD93D;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.carousel-caption p {
+    font-size: 1.5rem;
+    color: #FFD93D;
+}
+
+.carousel-item img {
+    border-radius: 10px;
+    height: 700px;
+    object-fit: cover;
+}
+
+button.btn-danger {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+}
+
+button.btn-primary {
+    background-color: #6BFF6B;
+    border-color: #6BFF6B;
+}
+
+button.btn-success {
+    background-color: #6BCBFF;
+    border-color: #6BCBFF;
+}
