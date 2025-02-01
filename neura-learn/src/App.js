@@ -6,6 +6,8 @@ import HomeCarousel from './Components/HomeCarousel';
 import HomeCard from './Components/HomeCard';
 import Contact from './Components/Contact';
 import About from './Components/About';
+import GuessNumber from './Components/GuessNumber';
+import ChooseGames from './Components/ChooseGames';
 
 const HomePage = () => {
   return (
@@ -13,21 +15,33 @@ const HomePage = () => {
       <HomeCarousel />
       <HomeCard />
     </>
-
   )
-
 }
 
 const ContactPage = () => {
   return (
-    <Contact />
+    
+    <Contact/>   
   )
-
 }
 
 const AboutPage = () => {
   return (
     <About/>
+  )
+}
+
+const ChooseGamesPage = () => {
+  return (
+    <>
+    <ChooseGames/>
+    </>
+  )
+}
+
+const GuessNumberPage = () => {
+  return (
+    <GuessNumber/>
   )
 }
 
@@ -39,6 +53,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/AboutPage" element={<AboutPage />} />
+        <Route path="/ChooseGamesPage" element = {<ChooseGamesPage/>}/>
+        <Route path="/ChooseGamesPage/GuessNumberPage" element={<GuessNumberPage />} />
       </Routes>
       <Footer />
     </Router>
