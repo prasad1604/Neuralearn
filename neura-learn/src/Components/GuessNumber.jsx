@@ -11,6 +11,7 @@ function GuessNumber() {
     const [guesses, setGuesses] = useState([]);
     const [gameOver, setGameOver] = useState(false);
     const [image, setImage] = useState("question-image");
+    const [giveupdisable, setGiveUpDisable] = useState(false);
 
     const generateNumber = () => {
         setComputerChoice(Math.floor(Math.random() * 21));
@@ -18,6 +19,7 @@ function GuessNumber() {
         setAttempts(0);
         setMessage("Try To Guess The Number Between 0 And 20.");
         setGuesses([]);
+        setGiveUpDisable(false);
         setGameOver(false);
     };
 
@@ -35,12 +37,14 @@ function GuessNumber() {
 
         if (numGuess === computerChoice) {
             setMessage(`Well Done! The Number Was ${computerChoice}.`);
+            setGiveUpDisable(true);
             setImage("winner-image");
             setScore(prev => prev + 1);
             setStreak(prev => prev + 1);
             setGameOver(true);
         } else if (attempts >= 14) {
             setMessage(`You Ran Out Of Attempts. The Number Was ${computerChoice}. Try Again.`);
+            setGiveUpDisable(true);
             setImage("sad-image");
             setStreak(0);
             setGameOver(true);
@@ -89,7 +93,7 @@ function GuessNumber() {
                     disabled={gameOver}
                 />
                 <button className="button-guessnumber" onClick={checkGuess} id="submit">Submit Guess</button>
-                <button className="button-guessnumber" onClick={revealNumber} id="giveup"> Give Up?</button>
+                <button className="button-guessnumber" onClick={revealNumber} id="giveup" disabled={giveupdisable}> Give Up?</button>
                 <button className="button-guessnumber" onClick={generateNumber} id="other"> Try Another Number</button>
             </div>
         </div>

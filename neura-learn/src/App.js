@@ -8,6 +8,9 @@ import Contact from './Components/Contact';
 import About from './Components/About';
 import GuessNumber from './Components/GuessNumber';
 import ChooseGames from './Components/ChooseGames';
+//import Landing from './Components/LandingPage';
+import PrintableActivities from './Components/PrintableActivities';
+import ScrollToTop from './Components/ScrollToTop';
 
 const HomePage = () => {
   return (
@@ -45,16 +48,33 @@ const GuessNumberPage = () => {
   )
 }
 
+/*const LandingPage = () => {
+  return (
+    <Landing/>
+  )
+}*/
+
+const PrintableActivitiesPage = () =>{
+  return (
+    <PrintableActivities/> 
+  )
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <Routes> 
+        <Route path="/" element={<HomePage/>}/>
+        {/*
+        <Route path="/" element={<LandingPage/>}/>
+        <Route path="/HomePage" element={<HomePage />} /> */}
         <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="/AboutPage" element={<AboutPage />} />
         <Route path="/ChooseGamesPage" element = {<ChooseGamesPage/>}/>
         <Route path="/ChooseGamesPage/GuessNumberPage" element={<GuessNumberPage />} />
+        <Route path="/PrintableActivitiesPage" element = {<PrintableActivitiesPage/>}/>
       </Routes>
       <Footer />
     </Router>

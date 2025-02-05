@@ -43,6 +43,7 @@ function HomeCard() {
                 <strong className="d-inline-block mb-2 text-success-emphasis">🎨 Fun activities!</strong>
                 <h3 className="mb-0">Printable Activities</h3>
                 <p className="mb-auto">Download and print activities for hands-on learning and fun.</p>
+                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/PrintableActivitiesPage">Get Started ✏️</Link>
               {/* <a href="#" className="icon-link gap-1 icon-link-hover stretched-link">
                   Get Started ✏️ 
 

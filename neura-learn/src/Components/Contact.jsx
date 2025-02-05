@@ -22,29 +22,29 @@ function Contact() {
                                 <form action="#!">
                                     <div className="row gy-4 gy-xl-5 p-4 p-xl-5">
                                         <div className="col-12">
-                                            <label for="fullname" className="form-label">Full Name <span className="text-danger">*</span></label>
-                                            <input type="text" className="form-control" id="fullname" name="fullname" value="" required />
+                                            <label htmlFor="fullname" className="form-label">Full Name <span className="text-danger">*</span></label>
+                                            <input type="text" className="form-control" id="fullname" name="fullname" required />
                                         </div>
                                         <div className="col-12 col-md-6">
-                                            <label for="email" className="form-label">Email <span className="text-danger">*</span></label>
+                                            <label htmlFor="email" className="form-label">Email <span className="text-danger">*</span></label>
                                             <div className="input-group">
                                                 <span className="input-group-text">
                                                     <i className="bi bi-envelope"></i>
                                                 </span>
-                                                <input type="email" className="form-control" id="email" name="email" value="" required />
+                                                <input type="email" className="form-control" id="email" name="email" required />
                                             </div>
                                         </div>
                                         <div className="col-12 col-md-6">
-                                            <label for="phone" className="form-label">Phone Number</label>
+                                            <label htmlFor="phone" className="form-label">Phone Number</label>
                                             <div className="input-group">
                                                 <span className="input-group-text">
                                                     <i className="bi bi-telephone"></i>
                                                 </span>
-                                                <input type="tel" className="form-control" id="phone" name="phone" value="" />
+                                                <input type="tel" className="form-control" id="phone" name="phone" />
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <label for="message" className="form-label">Message <span className="text-danger">*</span></label>
+                                            <label htmlFor="message" className="form-label">Message <span className="text-danger">*</span></label>
                                             <textarea className="form-control" id="message" name="message" rows="3" required></textarea>
                                         </div>
                                         <div className="col-12">
