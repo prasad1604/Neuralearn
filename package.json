@@ -1,0 +1,22 @@
+{
+  "name": "neuralearn",
+  "version": "1.0.0",
+  "description": "**There are two folders:**<br>\r EmpowerEd: is the previous project ideally dont change anything in it.<br>\r neura-learn: is the React App project which is our main project directory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoStory-py/Neuralearn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NoStory-py/Neuralearn/issues"
+  },
+  "homepage": "https://github.com/NoStory-py/Neuralearn#readme"
+}
