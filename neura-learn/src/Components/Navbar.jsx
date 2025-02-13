@@ -1,56 +1,99 @@
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../Assets/CSS/Navbar.css';
-//import '../Assets/JS/search.js'
 
-function Navbar(){
-    return(<>
-      
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to = "/">🎨 NeuraLearn 🎨</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                {/*<Link className="nav-link" to = "/HomePage">Home 🏠</Link>*/}
-                <Link className="nav-link" to = "/">Home 🏠</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to = "/AboutPage">About us ✨</Link>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="/topic.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Topics 🌟
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Courses 🎓</a></li>
-                  <li><a className="dropdown-item" href="#">Resources 📚</a></li>
-                  <li><hr className="dropdown-divider"/></li>
-                  <li><a className="dropdown-item" href="#">FAQ ❓</a></li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to = "/ContactPage">Contact Us 💬</Link>
-              </li>
-            </ul>
-            <ul className="navbar-nav mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="index.html">
-                  <i className="bi bi-box-arrow-right"></i> Logout 🚪
-                </a>
-              </li>
-            </ul>
-            <form className="d-flex ms-3" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search 🔍" aria-label="Search"/>
-              <button className="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    navigate('/');
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-kids">
+      <div className="container-fluid">
+        <Link className="navbar-brand kids-logo" to="/">
+          🌈 NeuraLearn 🍭
+        </Link>
+        
+        <button className="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent">
+          <span className="navbar-toggler-icon">🍔</span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link kids-link" to="/home">
+                🏡 Home
+              </Link>
+            </li>
+            
+            <li className="nav-item">
+              <Link className="nav-link kids-link" to="/about">
+                🦄 About Us
+              </Link>
+            </li>
+
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle kids-link" 
+                    to="#" 
+                    role="button" 
+                    data-bs-toggle="dropdown">
+                🎨 Activities
+              </Link>
+              <ul className="dropdown-menu kids-dropdown">
+                <li>
+                  <Link className="dropdown-item kids-dropdown-item" to="/courses">
+                    🎓 Learning Games
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item kids-dropdown-item" to="/resources">
+                    📚 Story Time
+                  </Link>
+                </li>
+                <li><hr className="dropdown-divider" /></li>
+                <li>
+                  <Link className="dropdown-item kids-dropdown-item" to="/faq">
+                    ❓ Help Corner
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link kids-link" to="/contact">
+                📮 Contact
+              </Link>
+            </li>
+          </ul>
+
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link kids-link" 
+                    to="/" 
+                    onClick={handleLogout}>
+                🚪 Logout
+              </Link>
+            </li>
+          </ul>
+
+          <form className="d-flex ms-3 kids-search" role="search">
+            <input className="form-control me-2" 
+                   type="search" 
+                   placeholder="🔍 Find Fun Stuff!" />
+            <button className="btn kids-search-btn" type="submit">
+              Go!
+            </button>
+          </form>
         </div>
-      </nav>
-      </>
-    );
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

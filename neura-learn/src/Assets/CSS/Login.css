@@ -1,0 +1,98 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(255,107,107,0.2);
+  position: relative;
+  transform: rotate(-2deg);
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-card::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  z-index: -1;
+  border-radius: 40px;
+  opacity: 0.3;
+}
+
+.character-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome-character {
+  width: 150px;
+  height: auto;
+  animation: bounce 2s infinite;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  font-family: 'Comic Neue', cursive;
+  color: #ff6b6b;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  font-size: 24px;
+  animation: float 3s infinite;
+}
+
+.star-1 { top: 10%; left: 5%; }
+.star-2 { top: 80%; right: 10%; }
+
+.cloud {
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.3;
+  animation: drift 10s infinite linear;
+}
+
+.cloud-1 { top: 20%; right: -50px; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes drift {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}

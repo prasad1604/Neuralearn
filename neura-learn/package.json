@@ -1,9 +1,11 @@
 {
   "name": "neura-learn",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "aos": "^2.3.4",
+    "axios": "^1.7.9",
     "cra-template": "1.2.0",
     "glightbox": "^3.3.1",
     "react": "^19.0.0",
