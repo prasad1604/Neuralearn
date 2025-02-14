@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 // import './Assets/CSS/main.css';
+
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import HomeCarousel from "./Components/HomeCarousel";
@@ -13,6 +14,7 @@ import ChooseGames from "./Components/ChooseGames";
 import Landing from "./Components/LandingPage";
 import PrintableActivities from "./Components/PrintableActivities";
 import ScrollToTop from "./Components/ScrollToTop";
+import LearningModules from './Components/LearningModules';
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 
@@ -53,11 +55,18 @@ const PrintableActivitiesPage = () => {
   return <PrintableActivities />;
 };
 
+const LearningModulesPage = () =>{
+  return(
+    <LearningModules/>
+  )
+}
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Navbar />
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
@@ -71,7 +80,9 @@ function App() {
           <Route path="/games" element={<ChooseGamesPage />} />
           <Route path="/games/guess-number" element={<GuessNumberPage />} />
           <Route path="/printables" element={<PrintableActivitiesPage />} />
+          <Route path="/learning-modules" element = {<LearningModulesPage/>}/>
         </Route>
+
       </Routes>
       <Footer />
     </Router>
