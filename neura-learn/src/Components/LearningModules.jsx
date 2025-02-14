@@ -1,4 +1,5 @@
-import '../Assets/CSS/LearningModules.css'
+import {Link} from 'react-router-dom';
+import '../Assets/CSS/LearningModules.css';
 
 function LearningModules() {
     return (
@@ -6,7 +7,7 @@ function LearningModules() {
             <div className="container">
                 <h1 className="text-center mt-4">Select a Subject</h1>
 
-                <div className="video-section">
+                <div id="video-section-modules"className="video-section">
                     <p><strong>Before starting, please watch this video:</strong></p>
                     <a href="https://youtu.be/hU8xEH5yRnA?si=Qs1zRmXyzpDojYdG" target="_blank">Watch Introductory Video</a>
                 </div>
@@ -21,11 +22,13 @@ function LearningModules() {
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-3">
+                        <Link to="/learning-modules/alphabets" className="learning-modules-link">
                         <div className="subject-card" onclick="selectSubject('alpha')">
                             <i className="fas fa-font"></i>
                             <h3>Alphabet</h3>
                             <p>Explore letters and words!</p>
                         </div>
+                        </Link>
                     </div>
                     <div className="col-md-6 col-lg-3">
                         <div className="subject-card" onclick="selectSubject('color')">

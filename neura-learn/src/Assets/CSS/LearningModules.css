@@ -93,7 +93,7 @@
     text-shadow: 1px 1px 2px #ffdfba;
 }
 
-.video-section {
+#video-section-modules {
     margin-top: 30px;
     text-align: center;
     background-color: #ffdfba;
@@ -104,12 +104,17 @@
     color: #d9534f;
 }
 
-.video-section a {
+.video-section-modules a {
     font-weight: bold;
     color: #ff6f91;
 }
 
-.video-section a:hover {
+.video-section-modules a:hover {
     color: #e34d67;
     text-decoration: underline;
+}
+
+.learning-modules-link {
+    color:#333;
+    text-decoration: none;
 }

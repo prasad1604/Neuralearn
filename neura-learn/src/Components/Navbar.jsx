@@ -47,18 +47,18 @@ function Navbar() {
               </Link>
               <ul className="dropdown-menu kids-dropdown">
                 <li>
-                  <Link className="dropdown-item kids-dropdown-item" to="/courses">
+                  <Link className="dropdown-item kids-dropdown-item" to="/games">
                     🎓 Learning Games
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item kids-dropdown-item" to="/resources">
+                  <Link className="dropdown-item kids-dropdown-item" to="/learning-modules">
                     📚 Story Time
                   </Link>
                 </li>
                 <li><hr className="dropdown-divider" /></li>
                 <li>
-                  <Link className="dropdown-item kids-dropdown-item" to="/faq">
+                  <Link className="dropdown-item kids-dropdown-item" to="/contact">
                     ❓ Help Corner
                   </Link>
                 </li>

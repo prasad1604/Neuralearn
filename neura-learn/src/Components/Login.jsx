@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../Assets/CSS/Login.css";
-import api from "../api"; 
+import api from "../Assets/JS/api"; 
 
 const Login = () => {
   // State declarations

@@ -15,17 +15,28 @@
     object-fit: cover;
 }
 
-button.btn-danger {
+#btn-carousel-danger {
     background-color: #FF6B6B;
     border-color: #FF6B6B;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
 }
 
-button.btn-primary {
+#btn-carousel-primary {
     background-color: #6BFF6B;
     border-color: #6BFF6B;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
 }
 
-button.btn-success {
+#btn-carousel-success {
     background-color: #6BCBFF;
     border-color: #6BCBFF;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
 }
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }

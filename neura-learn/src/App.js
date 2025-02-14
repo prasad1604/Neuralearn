@@ -17,6 +17,7 @@ import ScrollToTop from "./Components/ScrollToTop";
 import LearningModules from './Components/LearningModules';
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
+import ModulesAlphabets from "./Components/ModulesAlphabets";
 
 const HomePage = () => {
   return (
@@ -61,6 +62,12 @@ const LearningModulesPage = () =>{
   )
 }
 
+const ModulesAlphabetsPage = () => {
+  return (
+    <ModulesAlphabets/>
+  )
+}
+
 function App() {
   return (
     <Router>
@@ -81,6 +88,8 @@ function App() {
           <Route path="/games/guess-number" element={<GuessNumberPage />} />
           <Route path="/printables" element={<PrintableActivitiesPage />} />
           <Route path="/learning-modules" element = {<LearningModulesPage/>}/>
+          <Route path="/learning-modules/alphabets" element = {<ModulesAlphabetsPage/>}/>
+          
         </Route>
 
       </Routes>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../Assets/CSS/Login.css"; // Reuse the same CSS file
-import api from "../api";
+import "../Assets/CSS/Login.css"; 
+import api from "../Assets/JS/api";
 
 const Signup = () => {
   const [username, setUsername] = useState("");

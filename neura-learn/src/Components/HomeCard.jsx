@@ -12,7 +12,7 @@ function HomeCard() {
                 <strong className="d-inline-block mb-2 text-success-emphasis">🎮 Learn while playing!</strong>
                 <h3 className="mb-0">Interactive Games</h3>
                 <p className="card-text mb-auto">Fun and sensory-friendly games that help develop critical skills.</p>
-                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/ChooseGamesPage">Learn more 🎨</Link>
+                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/games">Learn more 🎨</Link>
               </div>
               <div className="col-auto d-none d-lg-block">
                 <img src="/Images/interactive-games.jpg" alt="Interactive Games" className="img-fluid" />
@@ -25,7 +25,7 @@ function HomeCard() {
                 <strong className="d-inline-block mb-2 text-success-emphasis">🎥 Learn from our expert tutors!</strong>
                 <h3 className="mb-0">Educational Videos</h3>
                 <p className="mb-auto">Engaging videos designed to capture attention and teach key concepts.</p>
-                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "LearningModulesPage">Watch now 🎥</Link>
+                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/learning-modules">Watch now 🎥</Link>
                {/* <a href="#" className="icon-link gap-1 icon-link-hover stretched-link"> 
                   Watch now 🎥
 
@@ -44,7 +44,7 @@ function HomeCard() {
                 <strong className="d-inline-block mb-2 text-success-emphasis">🎨 Fun activities!</strong>
                 <h3 className="mb-0">Printable Activities</h3>
                 <p className="mb-auto">Download and print activities for hands-on learning and fun.</p>
-                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/PrintableActivitiesPage">Get Started ✏️</Link>
+                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "/printables">Get Started ✏️</Link>
               {/* <a href="#" className="icon-link gap-1 icon-link-hover stretched-link">
                   Get Started ✏️ 
 
