@@ -15,9 +15,9 @@ function HomeCarousel(){
             <div className="carousel-caption d-none d-md-block">
               <h2>Welcome to NeuraLearn</h2>
               <p>Engaging learning experiences tailored for children with autism</p>
-              <button className="btn btn-danger">Explore 🌟</button>
-              <button className="btn btn-primary">Learn 📚</button>
-              <button className="btn btn-success">Grow 🌱</button>
+              <button id="btn-carousel-danger" className="btn btn-danger">Explore 🌟</button>
+                <button id="btn-carousel-primary" className="btn btn-primary">Learn 📚</button>
+                <button id="btn-carousel-success" className="btn btn-success">Grow 🌱</button>
             </div>
           </div>
           <div className="carousel-item">
@@ -25,9 +25,9 @@ function HomeCarousel(){
             <div className="carousel-caption d-none d-md-block">
                 <h2 style={{ color: 'purple' }}>Welcome to NeuraLearn</h2>
                 <p style={{ color: 'purple' }}>Engaging learning experiences tailored for children with autism</p>
-                <button className="btn btn-danger">Explore 🌟</button>
-                <button className="btn btn-primary">Learn 📚</button>
-                <button className="btn btn-success">Grow 🌱</button>
+                <button id="btn-carousel-danger" className="btn btn-danger">Explore 🌟</button>
+                <button id="btn-carousel-primary" className="btn btn-primary">Learn 📚</button>
+                <button id="btn-carousel-success" className="btn btn-success">Grow 🌱</button>
             </div>
           </div>
           <div className="carousel-item">
@@ -35,9 +35,9 @@ function HomeCarousel(){
             <div className="carousel-caption d-none d-md-block">
                 <h2 style={{ color: 'red' }}>Welcome to NeuraLearn</h2>
                 <p style={{ color: 'red' }}>Engaging learning experiences tailored for children with autism</p>
-                <button className="btn btn-danger">Explore 🌟</button>
-                <button className="btn btn-primary">Learn 📚</button>
-                <button className="btn btn-success">Grow 🌱</button>
+                <button id="btn-carousel-danger" className="btn btn-danger">Explore 🌟</button>
+                <button id="btn-carousel-primary" className="btn btn-primary">Learn 📚</button>
+                <button id="btn-carousel-success" className="btn btn-success">Grow 🌱</button>
             </div>
           </div>
         </div>

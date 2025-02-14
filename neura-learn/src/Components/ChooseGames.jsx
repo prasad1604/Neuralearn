@@ -17,7 +17,7 @@ function ChooseGames() {
                                     problem-solving skills and logical thinking with this
                                     fun and interactive game</p>
 
-                                <Link className="btn btn-primary btn-block" to="/ChooseGamesPage/GuessNumberPage">Play Now!</Link>
+                                <Link className="btn btn-primary btn-block" to="/games/guess-number">Play Now!</Link>
                             </div>
                         </div>
                     </div>

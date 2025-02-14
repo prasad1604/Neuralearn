@@ -23,7 +23,7 @@ function LandingPage() {
               <h2 data-aos="fade-up" data-aos-delay="100">Learning Today,<br />Leading Tomorrow</h2>
               <p data-aos="fade-up" data-aos-delay="200">A Learning website for children with autism spectrum disorder</p>
               <div className="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-                <Link className="btn-get-started" to="/Login">Get started</Link>
+                <Link className="btn-get-started" to="/login">Get started</Link>
               </div>
             </div>
 

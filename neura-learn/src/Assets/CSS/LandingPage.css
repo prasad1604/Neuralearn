@@ -66,13 +66,13 @@ body {
   font-family: var(--default-font);
 }
 
-a {
+.index-page a {
   color: var(--accent-color);
   text-decoration: none;
   transition: 0.3s;
 }
 
-a:hover {
+.index-page a:hover {
   color: color-mix(in srgb, var(--accent-color), transparent 25%);
   text-decoration: none;
 }
