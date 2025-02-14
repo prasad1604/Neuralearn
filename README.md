@@ -20,14 +20,14 @@ neura-learn/src/App.js is the main file where every react component is arranged 
 neura-learn/public index.html is the main html file generally you dont need to change it other than for like adding bootstrap CDN.
 
 
-**How to work on this:**<br>
+# How to work on this:
 
 **MAKE SURE NPM IS UPDATED TO THE LATEST VERSION USING "npm install -g npm@latest", the latest version rn is 11.1.0**<br>
-**Use Node version above or= 22**<br>
+**Use Node version above or= 22**
 
 First you need to clone this repo using "git clone "repo-link""<br>
 If you already have this project use Pull instead to get to the latest commit.<br>
-Next go to the neura-learn directory and do "npm install" same on the "backend" this basically installs packages like node_modules<br>
+Next go to the neura-learn directory and do "npm install" same on the "backend" this basically installs packages like node_modules
 
 To run the nodejs server you need to run the file server.js by using "node server.js" inside the backend folder.<br>
-To run the react app you need to do "npm start" inside neura-learn directory.<br>
+To run the react app you need to do "npm start" inside neura-learn directory.
