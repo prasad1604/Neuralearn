@@ -17,7 +17,7 @@ Images are in: neura-learn/public/Images, to reference images in jsx you just ne
 
 **File explanations:**<br>
 neura-learn/src/App.js is the main file where every react component is arranged and also where static routing is done.<br>
-neura-learn/public index.html is the main html file generally you dont need to change it other than for like adding bootstrap CDN
+neura-learn/public index.html is the main html file generally you dont need to change it other than for like adding bootstrap CDN.
 
 
 **How to work on this:**<br>
