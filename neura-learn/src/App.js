@@ -11,6 +11,7 @@ import ChooseGames from './Components/ChooseGames';
 //import Landing from './Components/LandingPage';
 import PrintableActivities from './Components/PrintableActivities';
 import ScrollToTop from './Components/ScrollToTop';
+import LearningModules from './Components/LearningModules';
 
 const HomePage = () => {
   return (
@@ -60,6 +61,12 @@ const PrintableActivitiesPage = () =>{
   )
 }
 
+const LearningModulesPage = () =>{
+  return(
+    <LearningModules/>
+  )
+}
+
 function App() {
   return (
     <Router>
@@ -75,6 +82,7 @@ function App() {
         <Route path="/ChooseGamesPage" element = {<ChooseGamesPage/>}/>
         <Route path="/ChooseGamesPage/GuessNumberPage" element={<GuessNumberPage />} />
         <Route path="/PrintableActivitiesPage" element = {<PrintableActivitiesPage/>}/>
+        <Route path="/LearningModulesPage" element = {<LearningModulesPage/>}/>
       </Routes>
       <Footer />
     </Router>
