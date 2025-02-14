@@ -25,6 +25,7 @@ function HomeCard() {
                 <strong className="d-inline-block mb-2 text-success-emphasis">🎥 Learn from our expert tutors!</strong>
                 <h3 className="mb-0">Educational Videos</h3>
                 <p className="mb-auto">Engaging videos designed to capture attention and teach key concepts.</p>
+                <Link className="icon-link gap-1 icon-link-hover stretched-link" to = "LearningModulesPage">Watch now 🎥</Link>
                {/* <a href="#" className="icon-link gap-1 icon-link-hover stretched-link"> 
                   Watch now 🎥
 
