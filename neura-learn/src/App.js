@@ -5,20 +5,20 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import HomeCarousel from "./Components/HomeCarousel";
-import HomeCard from "./Components/HomeCard";
-import Contact from "./Components/Contact";
-import About from "./Components/About";
-import GuessNumber from "./Components/GuessNumber";
-import ChooseGames from "./Components/ChooseGames";
-import Landing from "./Components/LandingPage";
-import PrintableActivities from "./Components/PrintableActivities";
+import HomeCarousel from "./Components/Home/HomeCarousel";
+import HomeCard from "./Components/Home/HomeCard";
+import Contact from "./Components/Misc/Contact";
+import About from "./Components/Misc/About";
+import GuessNumber from "./Components/Games/GuessNumber";
+import ChooseGames from "./Components/Games/ChooseGames";
+import Landing from "./Components/Landing/LandingPage";
+import PrintableActivities from "./Components/Printables/PrintableActivities";
 import ScrollToTop from "./Components/ScrollToTop";
-import LearningModules from './Components/LearningModules';
-import Login from "./Components/Login";
-import Signup from "./Components/Signup";
-import ModulesAlphabets from "./Components/ModulesAlphabets";
-import SocialEmotions from "./Components/SocialEmotions";
+import LearningModules from './Components/LearningModules/LearningModules';
+import Login from "./Components/Auth/Login";
+import Signup from "./Components/Auth/Signup";
+import ModulesAlphabets from "./Components/LearningModules/ModulesAlphabets";
+import SocialEmotions from "./Components/LearningModules/SocialEmotions";
 
 const HomePage = () => {
   return (
