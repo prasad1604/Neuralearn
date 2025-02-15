@@ -18,55 +18,18 @@ import LearningModules from './Components/LearningModules';
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import ModulesAlphabets from "./Components/ModulesAlphabets";
+import SocialEmotions from "./Components/SocialEmotions";
 
 const HomePage = () => {
   return (
     <>
       <HomeCarousel />
       <HomeCard />
+
     </>
   );
 };
 
-const ContactPage = () => {
-  return <Contact />;
-};
-
-const AboutPage = () => {
-  return <About />;
-};
-
-const ChooseGamesPage = () => {
-  return (
-    <>
-      <ChooseGames />
-    </>
-  );
-};
-
-const GuessNumberPage = () => {
-  return <GuessNumber />;
-};
-
-const LandingPage = () => {
-  return <Landing />;
-};
-
-const PrintableActivitiesPage = () => {
-  return <PrintableActivities />;
-};
-
-const LearningModulesPage = () =>{
-  return(
-    <LearningModules/>
-  )
-}
-
-const ModulesAlphabetsPage = () => {
-  return (
-    <ModulesAlphabets/>
-  )
-}
 
 function App() {
   return (
@@ -75,20 +38,21 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/games" element={<ChooseGamesPage />} />
-          <Route path="/games/guess-number" element={<GuessNumberPage />} />
-          <Route path="/printables" element={<PrintableActivitiesPage />} />
-          <Route path="/learning-modules" element = {<LearningModulesPage/>}/>
-          <Route path="/learning-modules/alphabets" element = {<ModulesAlphabetsPage/>}/>
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/games" element={<ChooseGames />} />
+          <Route path="/games/guess-number" element={<GuessNumber />} />
+          <Route path="/printables" element={<PrintableActivities />} />
+          <Route path="/learning-modules" element = {<LearningModules/>}/>
+          <Route path="/learning-modules/alphabets" element = {<ModulesAlphabets/>}/>
+          <Route path="/learning-modules/social-emotions" element = {<SocialEmotions/>}/>
           
         </Route>
 

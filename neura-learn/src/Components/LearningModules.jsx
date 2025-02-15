@@ -23,7 +23,7 @@ function LearningModules() {
                     </div>
                     <div className="col-md-6 col-lg-3">
                         <Link to="/learning-modules/alphabets" className="learning-modules-link">
-                        <div className="subject-card" onclick="selectSubject('alpha')">
+                        <div className="subject-card">
                             <i className="fas fa-font"></i>
                             <h3>Alphabet</h3>
                             <p>Explore letters and words!</p>
@@ -43,6 +43,18 @@ function LearningModules() {
                             <h3>Shapes</h3>
                             <p>Discover shapes!</p>
                         </div>
+                    </div>
+                    <div className="col-md-6 col-lg-3">
+                    <Link to="/learning-modules/social-emotions" className="learning-modules-link">
+                        <div className="subject-card">
+                            <i className="fas fa-smile" style={{ marginRight:"0.5rem", marginRight: "0.5rem" }}></i>
+                            <i className="fas fa-frown" style={{ marginRight:"0.5rem", marginRight: "0.5rem" }}></i>
+                            <i className="fas fa-surprise" style={{ marginRight:"0.5rem", marginRight: "0.5rem" }}></i>
+                            <i className="fas fa-angry" style={{ marginRight:"0.5rem", marginRight: "0.5rem" }}></i>
+                            <h3>Social Emotions</h3>
+                            <p>Learn about Social cues and Emotions!</p>
+                        </div>
+                        </Link>
                     </div>
                 </div>
 
