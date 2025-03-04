@@ -8,136 +8,32 @@ const ModulesAlphabets = () => {
             <h1>Learn Alphabets A to Z</h1>
 
             <div className="alphabet-cards">
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">A</div>
-                    <div className="word">Apple</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">B</div>
-                    <div className="word">Ball</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">C</div>
-                    <div className="word">Cat</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">D</div>
-                    <div className="word">Dog</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">E</div>
-                    <div className="word">Elephant</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">F</div>
-                    <div className="word">Fish</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">G</div>
-                    <div className="word">Goat</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">H</div>
-                    <div className="word">Hat</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">I</div>
-                    <div className="word">Ice cream</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">J</div>
-                    <div className="word">Jelly</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">K</div>
-                    <div className="word">Kite</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">L</div>
-                    <div className="word">Lion</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">M</div>
-                    <div className="word">Monkey</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">N</div>
-                    <div className="word">Nest</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">O</div>
-                    <div className="word">Orange</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">P</div>
-                    <div className="word">Parrot</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">Q</div>
-                    <div className="word">Queen</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">R</div>
-                    <div className="word">Rabbit</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">S</div>
-                    <div className="word">Sun</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">T</div>
-                    <div className="word">Tiger</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">U</div>
-                    <div className="word">Umbrella</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">V</div>
-                    <div className="word">Van</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">W</div>
-                    <div className="word">Whale</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">X</div>
-                    <div className="word">Xylophone</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">Y</div>
-                    <div className="word">Yak</div>
-                </div>
-                <div className="alphabet-card">
-                    <div className="hover-effect"></div>
-                    <div className="letter">Z</div>
-                    <div className="word">Zebra</div>
-                </div>
+                <AlphabetsCard letter="A" word="Apple" />
+                <AlphabetsCard letter="B" word="Ball" />
+                <AlphabetsCard letter="C" word="Cat" />
+                <AlphabetsCard letter="D" word="Dog" />
+                <AlphabetsCard letter="E" word="Elephant" />
+                <AlphabetsCard letter="F" word="Fish" />
+                <AlphabetsCard letter="G" word="Goat" />
+                <AlphabetsCard letter="H" word="Hat" />
+                <AlphabetsCard letter="I" word="Ice cream" />
+                <AlphabetsCard letter="J" word="Jelly" />
+                <AlphabetsCard letter="K" word="Kite" />
+                <AlphabetsCard letter="L" word="Lion" />
+                <AlphabetsCard letter="M" word="Monkey" />
+                <AlphabetsCard letter="N" word="Nest" />
+                <AlphabetsCard letter="O" word="Orange" />
+                <AlphabetsCard letter="P" word="Parrot" />
+                <AlphabetsCard letter="Q" word="Queen" />
+                <AlphabetsCard letter="R" word="Rabbit" />
+                <AlphabetsCard letter="S" word="Sun" />
+                <AlphabetsCard letter="T" word="Tiger" />
+                <AlphabetsCard letter="U" word="Umbrella" />
+                <AlphabetsCard letter="V" word="Van" />
+                <AlphabetsCard letter="W" word="Whale" />
+                <AlphabetsCard letter="X" word="Xylophone" />
+                <AlphabetsCard letter="Y" word="Yak" />
+                <AlphabetsCard letter="Z" word="Zebra" />
             </div>
 
             <div className="navigation">
@@ -156,3 +52,18 @@ const ModulesAlphabets = () => {
 }
 
 export default ModulesAlphabets;
+
+function AlphabetsCard(props) {
+
+    return (
+        <>
+            <div className="alphabet-card">
+                <div className="hover-effect"></div>
+                <div className="letter">{props.letter}</div>
+                <div className="word">{props.word}</div>
+
+            </div>
+        </>
+
+    )
+}
