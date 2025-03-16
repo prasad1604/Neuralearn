@@ -18,6 +18,7 @@ import ModulesAlphabets from "./Components/LearningModules/ModulesAlphabets";
 import ModulesColors from "./Components/LearningModules/ModulesColors";
 import ModulesShapes from "./Components/LearningModules/ModulesShapes";
 import SocialEmotions from "./Components/LearningModules/SocialEmotions";
+import VoiceRecognition from "./Components/LearningModules/VoiceRecognition";
 
 const HomePage = () => {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/learning-modules/colors" element = {<ModulesColors/>}/>
           <Route path="/learning-modules/shapes" element = {<ModulesShapes/>}/>
           <Route path="/learning-modules/social-emotions" element = {<SocialEmotions/>}/>
+          <Route path="/learning-modules/VoiceRecognition" element={<VoiceRecognition />} />
           
         </Route>
 
