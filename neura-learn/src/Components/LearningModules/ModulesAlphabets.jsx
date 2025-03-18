@@ -1,5 +1,5 @@
-import React from 'react'
-import "./ModulesAlphabets.css"
+import React from 'react';
+import "./ModulesAlphabets.css";
 
 const ModulesAlphabets = () => {
     return (
@@ -37,14 +37,14 @@ const ModulesAlphabets = () => {
             </div>
 
             <div className="navigation">
-                <button className="nav-button" onclick="location.href='1.html'">Home</button>
-                <button className="nav-button" onclick="location.href='alphatest.html'">Test</button>
+                <button className="nav-button" onClick={() => window.location.href = '1.html'}>Home</button>
+                <button className="nav-button" onClick={() => window.location.href = 'alphatest.html'}>Test</button>
             </div>
 
             <div className="video-section-alphabets">
                 <h3>Video Explanation</h3>
                 <p><strong>Refer to this video for better understanding:</strong></p>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hq3yfQnllfQ?si=x6gqUyw_rbeg8FTK&amp;start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hq3yfQnllfQ?si=x6gqUyw_rbeg8FTK&amp;start=9" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
             </div>
 
         </div>
@@ -53,17 +53,28 @@ const ModulesAlphabets = () => {
 
 export default ModulesAlphabets;
 
-function AlphabetsCard(props) {
+function AlphabetsCard({ letter, word }) {
+    const speak = () => {
+        const utterance = new SpeechSynthesisUtterance(`${letter} for ${word}`);
+        
+        // Adjusting voice properties for a playful sound
+        utterance.pitch = 1.3;  // Higher pitch makes it sound fun
+        utterance.rate = 0.95;   // Slightly faster for an energetic feel
+
+        const voices = speechSynthesis.getVoices();
+        // Try to find a more playful voice
+        utterance.voice = voices.find(voice => voice.name.includes("Google UK English Female")) || voices[0];
+
+        speechSynthesis.cancel(); // Stop any ongoing speech
+        speechSynthesis.speak(utterance);
+    };
 
     return (
-        <>
-            <div className="alphabet-card">
-                <div className="hover-effect"></div>
-                <div className="letter">{props.letter}</div>
-                <div className="word">{props.word}</div>
-
-            </div>
-        </>
-
-    )
+        <div className="alphabet-card" onMouseEnter={speak}>
+            <div className="hover-effect"></div>
+            <div className="letter">{letter}</div>
+            <div className="word">{word}</div>
+        </div>
+    );
 }
+
