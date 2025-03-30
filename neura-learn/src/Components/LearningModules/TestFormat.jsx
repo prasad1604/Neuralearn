@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./TestFormat.css";
-import Navigation from "./Navigation";
+import NavigationButtons from "./NavigationButtons";
 
 const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
   const [shuffledQuestions] = useState(() =>
@@ -83,11 +83,9 @@ const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
               scorePercentage >= 70 ? "Great job! 🌟" :
                 scorePercentage >= 50 ? "Good effort! 💪" : "Keep practicing! 🔄"}
           </p>
-          
+
 
           <div className="d-flex justify-content-center gap-3">
-            
-            <Navigation name="⬅️ Back" link={link}/>
 
             <button
               onClick={() => window.location.reload()}
@@ -95,7 +93,10 @@ const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
               style={{ background: '#00FF9D', color: '#003320' }}>
               🔄 Retest
             </button>
-            
+            <NavigationButtons
+              buttons={[{ name: "⬅️ Go Back", link: link }]}
+            />
+
           </div>
         </div>
       </div >
@@ -129,9 +130,8 @@ const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
             Question {current + 1} of {shuffledQuestions.length}
           </div>
         </div>
-        <Navigation
-          name="Go Back"
-          link={link}
+        <NavigationButtons
+          buttons={[{ name: "⬅️ Go Back", link: link }]}
         />
 
       </div>

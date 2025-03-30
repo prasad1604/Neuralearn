@@ -30,6 +30,7 @@ import ConversationTraining from "./Components/LearningModules/Voice/Conversatio
 import TestColors from "./Components/LearningModules/TestColors";
 import TestShapes from "./Components/LearningModules/TestShapes";
 import TestAlphabets from "./Components/LearningModules/TestAlphabets";
+import TestMaths from "./Components/LearningModules/TestMaths";
 
 function App() {
   return (
@@ -54,7 +55,9 @@ function App() {
           <Route path="/games/wordle" element={<WordleGame />} />
 
           <Route path="/learning-modules" element={<LearningModules />} />
+
           <Route path="/learning-modules/maths" element={<ModulesMaths />} />
+          <Route path="/learning-modules/maths/test" element={<TestMaths />} />
 
           <Route path="/learning-modules/alphabets" element={<ModulesAlphabets />} />
           <Route path="/learning-modules/alphabets/test" element={<TestAlphabets />} />
