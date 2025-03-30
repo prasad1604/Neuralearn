@@ -3,11 +3,11 @@
 }
 
 .test-nav-button {
+    font-size: 1.4rem; 
     margin: 5px;
-    padding: 10px 15px;
-    border: 1px solid #1a73e8;
-    background-color: #e6f7ff;
-    color: #1a73e8;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%);
+    color: #003a2f;
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
@@ -15,6 +15,6 @@
 }
 
 .test-nav-button:hover {
-    background-color: #d4ebf7;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 75%, #a8edea 100%);
     transform: translateY(-2px);
 }
