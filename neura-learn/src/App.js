@@ -23,7 +23,7 @@ import ModulesColors from "./Components/LearningModules/ModulesColors";
 import ModulesShapes from "./Components/LearningModules/ModulesShapes";
 import SocialEmotions from "./Components/LearningModules/SocialEmotions";
 import VoiceRecognition from "./Components/LearningModules/Voice/VoiceRecognition";
-//import SpeechTraining from "./Components/LearningModules/Voice/SpeechTraining";
+import SpeechTraining from "./Components/LearningModules/Voice/SpeechTraining";
 //import EmotionPractice from "./Components/LearningModules/Voice/EmotionPractice";
 import ConversationTraining from "./Components/LearningModules/Voice/ConversationTraining";
 
@@ -68,8 +68,8 @@ function App() {
           <Route path="/learning-modules/shapes" element={<ModulesShapes />} />
           <Route path="/learning-modules/shapes/test" element={<TestShapes />} />
           
-          {/*<Route path="/learning-modules/Voice/SpeechTraining" element={<SpeechTraining />} />
-          <Route path="/learning-modules/Voice/EmotionPractice" element={<EmotionPractice />} />*/}
+          <Route path="/learning-modules/Voice/SpeechTraining" element={<SpeechTraining />} />
+          {/*<Route path="/learning-modules/Voice/EmotionPractice" element={<EmotionPractice />} />*/}
           <Route path="/learning-modules/Voice/ConversationTraining" element={<ConversationTraining />} />
           
           <Route path="/learning-modules/social-emotions" element={<SocialEmotions />} />
