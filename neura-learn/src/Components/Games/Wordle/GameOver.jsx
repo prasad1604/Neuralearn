@@ -1,15 +1,12 @@
 import React, { useContext } from "react";
 import { GameContext } from "./WordleGame";
+import NavigationButtons from "../../LearningModules/NavigationButtons";
 
 function GameOver() {
   const {
-    board,
-    setBoard,
     currAttempt,
     gameOver,
-    onSelectLetter,
     correctWord,
-    onDelete,
   } = useContext(GameContext);
   return (
     <div className="gameOver">
@@ -22,6 +19,10 @@ function GameOver() {
       {gameOver.guessedWord && (
         <h3>You guessed in {currAttempt.attempt} attempts</h3>
       )}
+      <NavigationButtons
+      buttons = {[{ name: "Replay", action: () => window.location.reload()}]}
+      includeModules = {false}
+      />
     </div>
   );
 }

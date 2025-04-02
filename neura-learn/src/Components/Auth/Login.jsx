@@ -11,7 +11,6 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem("token"); 
-  console.log(isAuthenticated)
 
   useEffect(() => {
     if (isAuthenticated) {

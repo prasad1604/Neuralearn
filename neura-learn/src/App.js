@@ -12,6 +12,7 @@ import PrintableActivities from "./Components/Printables/PrintableActivities";
 import ChooseGames from "./Components/Games/ChooseGames";
 import GuessNumber from "./Components/Games/GuessNumber";
 import WordleGame from "./Components/Games/Wordle/WordleGame";
+import MemoryGame from "./Components/Games/Memory/MemoryGame";
 
 import Login from "./Components/Auth/Login";
 import Signup from "./Components/Auth/Signup";
@@ -21,7 +22,7 @@ import ModulesMaths from "./Components/LearningModules/ModulesMaths";
 import ModulesAlphabets from "./Components/LearningModules/ModulesAlphabets";
 import ModulesColors from "./Components/LearningModules/ModulesColors";
 import ModulesShapes from "./Components/LearningModules/ModulesShapes";
-import SocialEmotions from "./Components/LearningModules/SocialEmotions";
+import SocialEmotions from "./Components/LearningModules/Emotion/SocialEmotions";
 import VoiceRecognition from "./Components/LearningModules/Voice/VoiceRecognition";
 import SpeechTraining from "./Components/LearningModules/Voice/SpeechTraining";
 //import EmotionPractice from "./Components/LearningModules/Voice/EmotionPractice";
@@ -53,6 +54,7 @@ function App() {
           <Route path="/games" element={<ChooseGames />} />
           <Route path="/games/guess-number" element={<GuessNumber />} />
           <Route path="/games/wordle" element={<WordleGame />} />
+          <Route path="/games/memory-card" element={<MemoryGame />} />
 
           <Route path="/learning-modules" element={<LearningModules />} />
 

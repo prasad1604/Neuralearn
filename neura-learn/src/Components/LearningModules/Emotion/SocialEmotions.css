@@ -1,12 +1,19 @@
 /* Base Styles */
+.body-emotions {
+  background: linear-gradient(to bottom right, #ff39d4, #ff5f09 );
+  padding: 2rem;
+}
+
 .social-emotions-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   min-height: 100vh;
-  background: #f0f9ff;
+  background: #c0e9ff;
   font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .app-title {
@@ -184,4 +191,28 @@
     /* Allow full width on very small devices */
   }
 
+}
+
+.body-emotions img {
+  display: block;
+  margin: 2rem auto;
+  margin-bottom: 2rem;
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 650px;
+  height: 650px;
+}
+
+.response-message-emotions {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ea3d3d;
+}
+
+.body-emotions h3, .body-emotions p{
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(75, 75, 75);
+  margin-bottom: 10px;
 }

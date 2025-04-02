@@ -14,7 +14,7 @@ const NavigationButtons = ({buttons = [], includeModules = true}) => {
             )}
             {buttons.map((button, index) => (
                 button.action ? (
-                    <button className="test-nav-action-button" onClick={button.action}>{button.name}</button>
+                    <button key={index} className="test-nav-action-button" onClick={button.action}>{button.name}</button>
                 ) :
                 <Link key={index} to={button.link}>
                     <button className="test-nav-button">{button.name}</button>

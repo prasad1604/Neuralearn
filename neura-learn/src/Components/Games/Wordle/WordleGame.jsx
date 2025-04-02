@@ -2,6 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 import Board from "./Board";
 import Keyboard from "./Keyboard";
 import GameOver from "./GameOver";
+import WordleRules from "./WordleRules";
 import { boardDefault, generateWordSet } from "./Words";
 import "./WordleGame.css"; 
 
@@ -67,8 +68,9 @@ const WordleGame = () => {
   };
 
   return (
+
     <div className="wordle-game">
-        <h1>Wordle</h1>
+      <WordleRules/>
       <GameContext.Provider
         value={{
           board,
@@ -88,8 +90,11 @@ const WordleGame = () => {
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
+        
       </GameContext.Provider>
+      <br/>
     </div>
+  
   );
 };
 

@@ -9,12 +9,10 @@ from torchvision import transforms, models
 from torch.optim.lr_scheduler import StepLR
 
 def main():
-        
-    # Assigning processor
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"🟡 Using Device: {device}")
 
-    # Loading training, validation and testing data
+    # Load FERPlus dataset
     base_folder = "Datasets/FERPlus-master/data"
     label_file_name = "label.csv"
     parameters = Parameters()
@@ -23,28 +21,28 @@ def main():
     valid_reader = FERPlusReader.create(base_folder, ["FER2013Valid"], label_file_name, parameters)
     test_reader = FERPlusReader.create(base_folder, ["FER2013Test"], label_file_name, parameters)
 
-    print(f"🟡 Loaded {train_reader.size(), valid_reader.size(), test_reader.size()} images for training.")
+    print(f"🟡 Loaded {train_reader.size(), valid_reader.size(), test_reader.size()} images.")
 
-    # Define transformations (ResNet-18 expects 224x224 images normalized)
+    # Define EfficientNet preprocessing (matches EfficientNet's expected input)
     train_transform = transforms.Compose([
-        transforms.ToPILImage(),  
+        transforms.ToPILImage(),
         transforms.Grayscale(num_output_channels=3),
-        transforms.Resize((224, 224)), 
-        transforms.RandomHorizontalFlip(p=0.2), 
-        transforms.RandomRotation(10),  
-        transforms.ToTensor(),  
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Resize((224, 224)),  
+        transforms.RandomHorizontalFlip(p=0.2),
+        transforms.RandomRotation(10),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  
     ])
 
     eval_transform = transforms.Compose([
-        transforms.ToPILImage(),  
+        transforms.ToPILImage(),
         transforms.Grayscale(num_output_channels=3),
-        transforms.Resize((224, 224)), 
-        transforms.ToTensor(),  
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+        transforms.Resize((224, 224)),  
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  
     ])
 
-    # Creating dataset instances after Converting the loaded data into pytorch dataset using FERPlusDataset
+    # Create PyTorch Datasets
     train_dataset = FERPlusDataset(train_reader, transform=train_transform)
     valid_dataset = FERPlusDataset(valid_reader, transform=eval_transform)
     test_dataset = FERPlusDataset(test_reader, transform=eval_transform)
@@ -53,84 +51,79 @@ def main():
     print(f"🟡 Validation dataset size: {len(valid_dataset)}")
     print(f"🟡 Test dataset size: {len(test_dataset)}")
 
-    # Create DataLoaders
     batch_size = 64
-
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2, pin_memory=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2, pin_memory=True)
 
     print("🟡 DataLoaders created successfully")
 
-    # Load Pretrained ResNet-18
-    model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)  
+    # Load Pretrained EfficientNet-B0
+    model = models.efficientnet_b0(weights=models.EfficientNet_B0_Weights.DEFAULT)
 
-    for param in model.parameters(): # Freeze all layers
-        param.requires_grad = False
+    for param in model.parameters():  
+        param.requires_grad = False  
     print("🟡 Froze all layers")
 
-    for param in model.layer2.parameters():
-        param.requires_grad = True
+    # Unfreeze classifier layer for fine-tuning
+    model.classifier[1] = nn.Linear(model.classifier[1].in_features, 8)  
+    for param in model.classifier.parameters():
+        param.requires_grad = True  
 
-    # Unfreeze the third residual block (layer3)
-    for param in model.layer3.parameters():
-        param.requires_grad = True
+    model.to(device)
+    print("🟡 EfficientNet-B0 Model Loaded & Modified for FERPlus")
 
-    # Unfreeze the fourth residual block (layer4)
-    for param in model.layer4.parameters():
-        param.requires_grad = True
-
-    # Unfreeze the fully connected layer (fc)
-    for param in model.fc.parameters():
-        param.requires_grad = True
-    print("🟡 UnFroze layers 2,3,4,fc")
-
-    num_features= model.fc.in_features # Get the number of input features for the final layer 
-    model.fc = nn.Linear(num_features, 8) # Replace the last fully connected layer (for 8 emotions)
- 
-    model.to(device)    
-    
-    print("🟡 ResNet-18 Model Loaded & Modified for FERPlus")
-
-    # Define Loss Function (Cross-Entropy for classification) and Define Optimizer (Adam for adaptive learning)
+    # Define Loss Function & Optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
-    scheduler = StepLR(optimizer, step_size=5, gamma=0.1)
+    optimizer = optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)
+    scheduler = StepLR(optimizer, step_size=3, gamma=0.1)
 
-    print("🟡 Loss Function & Optimizer Defined")
+    print("🟡 Using AdamW Optimizer")
 
-    # Train Function to train the model
+    # Train model
     # train_model(model, train_loader, valid_loader, test_loader, criterion, optimizer, scheduler, num_epochs=10, device=device)
-
-    # External Test
     model.load_state_dict(torch.load("best_model.pth", weights_only=True))
     print(test_model(model, test_loader, criterion, device))
 
-# Model Training Function
 def train_model(model, train_loader, val_loader, test_loader, criterion, optimizer, scheduler, num_epochs=10, device="cpu"):
-    
     best_val_loss = float("inf")
-    patience = 5  # Number of epochs to wait for improvement
+    patience = 5  
     patience_counter = 0
+    unfreeze_layers = 0
 
     for epoch in range(num_epochs):
-        model.train() 
+
+        if (epoch + 1) % 3 == 0:
+            # Get all feature blocks
+            feature_blocks = list(model.features.children())
+            
+            # Calculate how many blocks to unfreeze (capped at total blocks)
+            blocks_to_unfreeze = min(unfreeze_layers + 3, len(feature_blocks))
+            
+            if blocks_to_unfreeze > unfreeze_layers:
+                # Unfreeze the deepest N blocks
+                for block in feature_blocks[-blocks_to_unfreeze:]:
+                    for param in block.parameters():
+                        param.requires_grad = True
+                
+                unfreeze_layers = blocks_to_unfreeze
+                print(f"🟢 Unfrozen last {unfreeze_layers} feature blocks at epoch {epoch+1}")
+
+        model.train()
         running_loss = 0.0
         correct = 0
         total = 0
 
-        # Training loop
         for batch in train_loader:
-            images = batch['image']  
-            labels = batch['emotion'] 
-            labels = labels.argmax(dim=1)
+            images = batch['image']
+            labels = batch['emotion'].argmax(dim=1)
             images, labels = images.to(device), labels.to(device)
 
-            optimizer.zero_grad()  # Reset gradients
-            outputs = model(images)  # Forward pass
-            loss = criterion(outputs, labels)  # Compute loss
-            loss.backward()  # Backpropagation
-            optimizer.step()  # Update weights
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
 
             running_loss += loss.item()
             _, predicted = torch.max(outputs, 1)
@@ -140,14 +133,12 @@ def train_model(model, train_loader, val_loader, test_loader, criterion, optimiz
         train_loss = running_loss / len(train_loader)
         train_acc = 100 * correct / total
 
-        # Run Validation
         val_loss, val_acc = validate_model(model, val_loader, criterion, device)
 
-        # Save Best Model
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             patience_counter = 0
-            torch.save(model.state_dict(), "best_model.pth") 
+            torch.save(model.state_dict(), "best_model.pth")
         else:
             patience_counter += 1
             if patience_counter >= patience:
@@ -160,22 +151,19 @@ def train_model(model, train_loader, val_loader, test_loader, criterion, optimiz
 
     print("Training complete. Best model saved as 'best_model.pth'.")
 
-    # Load Best Model and Run Testing
-    model.load_state_dict(torch.load("best_model.pth", weights_only=True))
+    model.load_state_dict(torch.load("best_model.pth"))
     print(test_model(model, test_loader, criterion, device))
 
-
 def validate_model(model, val_loader, criterion, device="cpu"):
-    model.eval()  # Set model to evaluation mode
+    model.eval()
     val_loss = 0.0
     val_correct = 0
     val_total = 0
 
-    with torch.no_grad():  # No need to compute gradients
+    with torch.no_grad():
         for batch in val_loader:
-            images = batch['image']  
-            labels = batch['emotion'] 
-            labels = labels.argmax(dim=1)
+            images = batch['image']
+            labels = batch['emotion'].argmax(dim=1)
             images, labels = images.to(device), labels.to(device)
 
             outputs = model(images)
@@ -190,7 +178,6 @@ def validate_model(model, val_loader, criterion, device="cpu"):
     val_acc = 100 * val_correct / val_total
 
     return val_loss, val_acc
-
 
 def test_model(model, test_loader, criterion, device="cpu"):
     model.eval()  # Set model to evaluation mode
@@ -217,8 +204,5 @@ def test_model(model, test_loader, criterion, device="cpu"):
 
     return f"Final Test Loss: {test_loss:.4f} | Final Test Accuracy: {test_acc:.2f}%"
 
-# To ensure script is ran correctly for multiprocessing
 if __name__ == "__main__":
     main()
-    
-    
