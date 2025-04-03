@@ -9,6 +9,9 @@ import ScrollToTop from "./Components/ScrollToTop";
 import LandingPage from "./Components/Landing/LandingPage";
 import PrintableActivities from "./Components/Printables/PrintableActivities";
 
+import MainProfile from "./Components/Profile/MainProfile";
+import UpdateProfile from "./Components/Profile/UpdateProfile";
+
 import ChooseGames from "./Components/Games/ChooseGames";
 import GuessNumber from "./Components/Games/GuessNumber";
 import WordleGame from "./Components/Games/Wordle/WordleGame";
@@ -50,6 +53,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/printables" element={<PrintableActivities />} />
+
+          <Route path="/profile" element={<MainProfile/>} />
+          <Route path="/profile/update" element={<UpdateProfile />} />
 
           <Route path="/games" element={<ChooseGames />} />
           <Route path="/games/guess-number" element={<GuessNumber />} />
