@@ -6,6 +6,7 @@ import re
 import tempfile
 import time
 import threading
+import string
 from datetime import datetime
 import librosa
 import numpy as np
@@ -209,8 +210,11 @@ async def analyze(
         if not response_text:
             raise HTTPException(400, "No response provided")
 
-        # Echolalia detection first
-        is_echolalia = detect_echolalia(response_text, question)
+        # Skip echolalia detection for speech training
+        is_echolalia = False
+        if mode != "speech_training":
+            is_echolalia = detect_echolalia(response_text, question)
+
         if is_echolalia:
             is_correct = False
             suggestions.append(QUESTION_SUGGESTIONS.get(
@@ -220,11 +224,13 @@ async def analyze(
             mnli_label = "echolalia"
         else:
             if mode == "speech_training":
-                normalized_response = response_text.lower().strip()
-                normalized_question = question.lower().strip()
+                # Enhanced text normalization
+                translator = str.maketrans('', '', string.punctuation)
+                normalized_response = response_text.translate(translator).lower().strip()
+                normalized_question = question.translate(translator).lower().strip()
                 
                 is_correct = normalized_response == normalized_question
-                confidence = similarity_ratio(normalized_response, normalized_question)
+                confidence = 1.0 if is_correct else similarity_ratio(normalized_response, normalized_question)
 
                 response_data = {
                     "is_correct": is_correct,
@@ -336,9 +342,9 @@ async def process_audio(audio: UploadFile):
         
         audio_segment = AudioSegment.from_file(audio_path)
         wav_path = audio_path + ".wav"
-        audio_segment.export(wav_path, format="wav", parameters=["-ac", "1", "-ar", "16000"])
+        audio_segment.export(wav_path, format="wav", parameters=["-ac", "1", "-ar", "16000", "-sample_fmt", "s16"])
         
-        if librosa.get_duration(filename=wav_path) < MIN_AUDIO_LENGTH:
+        if librosa.get_duration(path=wav_path) < MIN_AUDIO_LENGTH:
             raise HTTPException(400, "Audio too short")
             
         return audio_path, wav_path
