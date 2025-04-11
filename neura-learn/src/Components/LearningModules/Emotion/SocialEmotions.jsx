@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SocialEmotions.css";
-import NavigationButtons from "../NavigationButtons";
 import VideoSection from "../VideoSection";
 import CameraCard from "./CameraCard";
 import EmotionsCard from "./EmotionCard";
-
-
 
 const SocialEmotions = () => {
   const [showCamera, setShowCamera] = useState(false)
@@ -24,12 +21,17 @@ const SocialEmotions = () => {
     {
       desc: "Look at the image below. Can you guess what emotion this group is showing?",
       task: "What emotion do you see in this group? Type your answer below.",
-      correctAnswer: "angry",
+      correctAnswer: "anger",
       response: "Great! This is angry! We feel angry when we experience loss.",
       image: "/Images/angry.jpg"
     }
   ];
 
+  useEffect(() => {
+    if (showCamera) {
+      setChapter(prev => prev + 1);
+    }
+  }, [showCamera])
 
   const handleAnswer = (emotionAnswer) => {
     const currentModule = moduledata[chapter - 1];
@@ -50,7 +52,8 @@ const SocialEmotions = () => {
       <div className="social-emotions-container">
       {showCamera ? (
           <CameraCard
-          userAnswer = {userAnswer}
+          cameraAnswer = {userAnswer}
+          setShowCamera={setShowCamera}
           />
       ) :
       <EmotionsCard

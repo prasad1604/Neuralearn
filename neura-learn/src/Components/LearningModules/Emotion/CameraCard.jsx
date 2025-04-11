@@ -2,7 +2,9 @@ import React, { useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 
-const CameraAccess = ({userAnswer}) => {
+const CameraCard = ({cameraAnswer, setShowCamera}) => {
+    const [cameraOn, setCameraOn] = useState(true);
+    const hasCameraSupport = !!navigator.mediaDevices?.getUserMedia;
     const webcamRef = useRef(null);
     const [emotion, setEmotion] = useState(null);
     const [error, setError] = useState(null);
@@ -35,45 +37,19 @@ const CameraAccess = ({userAnswer}) => {
             const response = await axios.post("http://localhost:8000/model/predict-emotion", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
+            const temp = response.data.emotion
+            setEmotion(temp);
+            console.log(cameraAnswer)
+            if (temp.toLowerCase() === cameraAnswer.toLowerCase()){
+                alert("Correct Answer!!")
+                setShowCamera(false)
+            }
 
-            setEmotion(response.data.emotion);
         } catch (err) {
             console.error("Error sending image to backend:", err);
             setError("Error analyzing emotion.");
         }
     }, []);
-
-    return (
-        <div className="camera-wrapper">
-            {error ? (
-                <div className="error-container">
-                    <p className="error-message">{error}</p>
-                </div>
-            ) : (
-                <>
-                    <Webcam
-                        ref={webcamRef}
-                        audio={false}
-                        screenshotFormat="image/jpeg"
-                        videoConstraints={videoConstraints}
-                        className="webcam-video"
-                        onUserMediaError={() => setError("Camera access denied. Please enable permissions.")}
-                    />
-                    <button id="btn-capture-socialemotion" className="btn-capture" onClick={capture}>
-                        📸 Capture
-                    </button>
-                    {emotion && (
-                        <div className="display-emotion">😊 Detected Emotion: <strong>{emotion}</strong></div>
-                    )}
-                </>
-            )}
-        </div>
-    );
-};
-
-const CameraCard = () => {
-    const [cameraOn, setCameraOn] = useState(true);
-    const hasCameraSupport = !!navigator.mediaDevices?.getUserMedia;
     return (
 
         <>
@@ -89,7 +65,30 @@ const CameraCard = () => {
                         <button id="btn-control-socialemotion" className="btn btn-control" onClick={() => setCameraOn(false)}>
                             🚫 Stop Camera
                         </button>
-                        <CameraAccess />
+                        <div className="camera-wrapper">
+                            {error ? (
+                                <div className="error-container">
+                                    <p className="error-message">{error}</p>
+                                </div>
+                            ) : (
+                                <>
+                                    <Webcam
+                                        ref={webcamRef}
+                                        audio={false}
+                                        screenshotFormat="image/jpeg"
+                                        videoConstraints={videoConstraints}
+                                        className="webcam-video"
+                                        onUserMediaError={() => setError("Camera access denied. Please enable permissions.")}
+                                    />
+                                    <button id="btn-capture-socialemotion" className="btn-capture" onClick={capture}>
+                                        📸 Capture
+                                    </button>
+                                    {emotion && (
+                                        <div className="display-emotion">😊 Detected Emotion: <strong>{emotion}</strong></div>
+                                    )}
+                                </>
+                            )}
+                        </div>
                     </>
                 ) : (
                     <button id="btn-start-socialemotion" className="btn btn-start" onClick={() => setCameraOn(true)}>

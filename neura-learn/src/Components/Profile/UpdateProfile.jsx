@@ -73,7 +73,7 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-card">
         <div className="character-container">
-          <img src="../Images/dolphin.jpg" alt="Friendly Dolphin" className="welcome-character" />
+          <img src="/Images/dolphin.jpg" alt="Friendly Dolphin" className="welcome-character" />
           <div className="speech-bubble">Let's Customize! 🌟</div>
         </div>
 
