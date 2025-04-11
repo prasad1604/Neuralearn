@@ -125,8 +125,9 @@ const SpeechTraining = () => {
   };
 
   const handleTextSubmit = () => {
-    if (textInput.trim()) {
-      handleSubmit(textInput);
+    const cleanInput = textInput.replace(/[^\w\s]/gi, '').trim();
+    if (cleanInput) {
+      handleSubmit(cleanInput);
     }
   };
 
@@ -137,7 +138,10 @@ const SpeechTraining = () => {
         audio: {
           channelCount: 1,
           sampleRate: 16000,
-          echoCancellation: false
+          sampleSize: 16,
+          echoCancellation: false,
+          autoGainControl: true,
+          noiseSuppression: true
         }
       });
       
