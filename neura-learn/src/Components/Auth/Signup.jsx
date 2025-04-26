@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css"; 
 import api from "./api";
@@ -10,7 +10,14 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
   const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("token");
  
+  useEffect(() => {
+      if (isAuthenticated) {
+        navigate("/home"); 
+      }
+    }, [isAuthenticated, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

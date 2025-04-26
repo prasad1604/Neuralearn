@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import MemoryCard from './MemoryCard';
-import './MemoryGame.css'
+import MemoryHint from './MemoryHints';
+import './MemoryGame.css';
+
+const PAIRS = 6;
 
 const MemoryGame = () => {
   const maxTime = 120;
@@ -11,93 +14,135 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [disableDeck, setDisableDeck] = useState(false);
-  const [shake, setShake] = useState(false);
 
+  // shuffle on mount
   useEffect(() => {
     shuffleCard();
+  }, []);
+
+  // timer
+  useEffect(() => {
+    if (!isPlaying) return;
     const timer = setInterval(() => {
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-      } else {
-        setTimeLeft(timeLeft - 1);
-      }
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setIsPlaying(false);
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
     return () => clearInterval(timer);
-  }, [timeLeft]);
+  }, [isPlaying]);
 
-  const shuffleCard = () => {
+  // derived
+  const gameOver = !isPlaying && (timeLeft === 0 || matchedCard === PAIRS);
+  const didWin = matchedCard === PAIRS;
+
+  function shuffleCard() {
     setFlips(0);
     setMatchedCard(0);
+    setFlippedCards([]);
     setDisableDeck(false);
-    setIsPlaying(false);
+    setTimeLeft(maxTime);
+    setIsPlaying(true);
 
-    let arr = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
-    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+    const deck = [1,2,3,4,5,6,1,2,3,4,5,6]
+      .sort(() => Math.random() - 0.5)
+      .map((n, i) => ({
+        id: i,
+        image: `/Images/img-${n}.png`,
+        flipped: false,
+        shake: false,
+      }));
+    setCards(deck);
+  }
 
-    setCards(arr.map((img, index) => ({
-      id: index,
-      image: `/Images/img-${index}.png`,
-      flipped: false,
-      shake: false,
-    })));
-  };
-
-  const flipCard = (id) => {
+  function flipCard(id) {
     if (!isPlaying || disableDeck) return;
 
-    const updatedCards = [...cards];
-    const card = updatedCards.find((card) => card.id === id);
-    card.flipped = !card.flipped;
+    // flip it
+    let updated = cards.map(c =>
+      c.id === id ? { ...c, flipped: true } : c
+    );
+    setFlips(f => f + 1);
 
-    setCards(updatedCards);
-    setFlips((prev) => prev + 1);
-
+    // first card?
     if (flippedCards.length === 0) {
-      setFlippedCards([card]);
-    } else {
-      const [firstCard] = flippedCards;
-      if (firstCard.image === card.image) {
-        setMatchedCard((prev) => prev + 1);
-        setFlippedCards([]);
-        if (matchedCard + 1 === 6) {
-          setIsPlaying(false);
-        }
-      } else {
-        setDisableDeck(true);
-        setShake(true);
-        setTimeout(() => {
-          card.flipped = false;
-          firstCard.flipped = false;
-          setCards(updatedCards);
-          setFlippedCards([]);
-          setDisableDeck(false);
-          setShake(false);
-        }, 1200);
-      }
+      setCards(updated);
+      setFlippedCards([ updated.find(c => c.id === id) ]);
+      return;
     }
-  };
 
-  return (
-    <div className = "memory-body">
-    <div className="wrapper">
-      <ul className="cards">
-        {cards.map((card) => (
-          <MemoryCard
-            key={card.id}
-            image={card.image}
-            onClick={() => flipCard(card.id)}
-            flipped={card.flipped}
-            shake={shake}
-          />
-        ))}
-      </ul>
-      <div className="details">
-        <p className="time">Time: <span><b>{timeLeft}</b>s</span></p>
-        <p className="flips">Flips: <span><b>{flips}</b></span></p>
-        <button onClick={shuffleCard}>Refresh</button>
+    // second card: compare
+    const first = flippedCards[0];
+    const second = updated.find(c => c.id === id);
+
+    if (first.image === second.image) {
+      // match
+      setMatchedCard(m => {
+        const next = m + 1;
+        if (next === PAIRS) setIsPlaying(false);
+        return next;
+      });
+      setCards(updated);
+      setFlippedCards([]);
+    } else {
+      // mismatch: shake then reset
+      setDisableDeck(true);
+      updated = updated.map(c =>
+        (c.id === first.id || c.id === second.id)
+          ? { ...c, shake: true }
+          : c
+      );
+      setCards(updated);
+
+      setTimeout(() => {
+        const reset = updated.map(c =>
+          (c.id === first.id || c.id === second.id)
+            ? { ...c, flipped: false, shake: false }
+            : c
+        );
+        setCards(reset);
+        setFlippedCards([]);
+        setDisableDeck(false);
+      }, 1200);
+    }
+  }
+
+  return (<>
+    <div className="memory-body" style= {{ background: 'linear-gradient(to bottom right, rgb(243, 96, 12), rgb(240, 138, 138))' }}>
+      {gameOver && (
+        <div className="overlay">
+          <h2>{didWin ? "🎉 You Win!" : "⏰ Time's Up!"}</h2>
+          <button onClick={shuffleCard}>Play Again</button>
+        </div>
+      )}
+      <MemoryHint/>
+      <div className="wrapper" style={{ filter: gameOver ? 'blur(2px)' : 'none' }}>
+        <ul className="cards">
+          {cards.map(card => (
+            <MemoryCard
+              key={card.id}
+              image={card.image}
+              onClick={() => flipCard(card.id)}
+              flipped={card.flipped}
+              shake={card.shake}
+            />
+          ))}
+        </ul>
+        <div className="details">
+          <p className="time">
+            Time: <span><b>{timeLeft}</b>s</span>
+          </p>
+          <p className="flips">
+            Flips: <span><b>{flips}</b></span>
+          </p>
+          <button onClick={shuffleCard}>Refresh</button>
+        </div>
       </div>
-    </div>
-    </div>
+    </div></>
   );
 };
 

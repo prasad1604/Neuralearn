@@ -19,7 +19,7 @@ function Letter({ letterPos, attemptVal }) {
     }
   }, [currAttempt.attempt]);
   return (
-    <div className="letter" id={letterState}>
+    <div className="letter" id={letterState || undefined}>
       {letter}
     </div>
   );

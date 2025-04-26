@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
 import './Navbar.css';
 
 function Navbar() {
@@ -72,7 +73,7 @@ function Navbar() {
               </Link>
             </li>
             
-          </ul>
+          </ul> 
 
           {isAuthenticated ? 
           <ul className="navbar-nav mb-2 mb-lg-0">
@@ -84,15 +85,9 @@ function Navbar() {
               </Link>
             </li>
           </ul> : null }
+          
+          <SearchBar isLoggedIn={isAuthenticated ? true: false}/>
 
-          <form className="d-flex ms-3 kids-search" role="search">
-            <input className="form-control me-2" 
-                   type="search" 
-                   placeholder="🔍 Find Fun Stuff!" />
-            <button className="btn kids-search-btn" type="submit">
-              Go!
-            </button>
-          </form>
         </div>
       </div>
     </nav>

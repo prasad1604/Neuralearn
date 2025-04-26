@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-
+import { useState } from "react";
+import NavigationButtons from "../../LearningModules/NavigationButtons";
 const MemoryHints = () => {
-  const [showHints, setShowHints] = useState(false);
-
-  const toggleHints = () => setShowHints(!showHints);
+  const [showRules, setShowRules] = useState(false);
 
   return (
-    <div className="container">
-      <button className="btn btn-lg btn-primary" onClick={toggleHints}>
-        Game Hints
-      </button>
-      {showHints && (
-        <div className="hints-content" style={{ marginTop: '10px' }}>
-          <ul>
+    <div className="container p-2 text-white border rounded shadow-lg mt-5" style={{ maxWidth: "600px", backgroundColor: "#8bf8af"}}>
+      <h1 className="text-center"><strong>Memory Game</strong></h1>
+      <h2 className="text-center mb-3"><strong>🎉 Memory Game Rules! 🎉</strong></h2>
+      <div className="text-center">
+        <NavigationButtons
+          buttons={[{ name: showRules ? "Hide Rules" : "Show Rules", action: () => setShowRules(!showRules) }]}
+          includeModules={false}
+        />
+      </div>
+      {showRules && (
+        <div className="p-3 bg-light border rounded text-dark">
+          <ul className="list-unstyled">
             <li><strong>Find Pairs:</strong> 👫 Try to match two cards that look the same.</li>
             <li><strong>Remember Cards:</strong> 🧠 When you see a card, remember where it is.</li>
             <li><strong>Look Closely:</strong> 👀 Pay attention to the pictures on the cards.</li>

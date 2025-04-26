@@ -13,6 +13,7 @@ const WordleGame = () => {
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
   const [correctWord, setCorrectWord] = useState("");
+  const [correctDesc, setCorrectDesc] = useState("");
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameOver, setGameOver] = useState({
     gameOver: false,
@@ -23,20 +24,21 @@ const WordleGame = () => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
+      setCorrectDesc(words.todaysDescription);
     });
   }, []);
 
   const onEnter = () => {
     if (currAttempt.letter !== 5) return;
 
-    let currWord = board[currAttempt.attempt].join("");
+    let currWord = board[currAttempt.attempt].join("").toLowerCase();
 
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
       alert("Word not found");
     }
-
+    console.log(currWord, correctWord)
     if (currWord === correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
@@ -71,6 +73,7 @@ const WordleGame = () => {
 
     <div className="wordle-game">
       <WordleRules/>
+      <h2><strong>Hint: {correctDesc}</strong></h2>
       <GameContext.Provider
         value={{
           board,
