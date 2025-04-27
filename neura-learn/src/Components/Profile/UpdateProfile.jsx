@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./UpdateProfile.css";
 
 const Profile = () => {
@@ -13,6 +13,7 @@ const Profile = () => {
     favoriteCartoon: ""
   });
   const [saveMessage, setSaveMessage] = useState("");
+  const navigate = useNavigate()
   console.log(userData);
 
   useEffect(() => {
@@ -76,8 +77,12 @@ const handleSave = async (e) => {
 
     if (!response.ok) throw new Error("Save failed");
 
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setSaveMessage("🎉 Yay! Profile Saved!");
+    navigate("/profile")
     setTimeout(() => setSaveMessage(""), 3000);
+    
+
   } catch (err) {
     setSaveMessage("😟 Oops! Save Failed");
     console.error("Save error:", err);

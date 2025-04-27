@@ -2,7 +2,7 @@ import React, { useRef, useState, useCallback } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 
-const CameraCard = ({cameraAnswer, setShowCamera}) => {
+const CameraCard = ({cameraAnswer, setShowCamera, response, task, setAttempts, chapter, totalChapters, setShowResult}) => {
     const [cameraOn, setCameraOn] = useState(true);
     const hasCameraSupport = !!navigator.mediaDevices?.getUserMedia;
     const webcamRef = useRef(null);
@@ -16,6 +16,7 @@ const CameraCard = ({cameraAnswer, setShowCamera}) => {
     };
 
     const capture = useCallback(async () => {
+        setAttempts(prev => prev + 1)
         const imageSrc = webcamRef.current?.getScreenshot();
         if (!imageSrc) return;
 
@@ -43,6 +44,9 @@ const CameraCard = ({cameraAnswer, setShowCamera}) => {
             if (temp.toLowerCase() === cameraAnswer.toLowerCase()){
                 alert("Correct Answer!!")
                 setShowCamera(false)
+                if (chapter === totalChapters){
+                    setShowResult(true)
+                }
             }
 
         } catch (err) {
@@ -54,9 +58,7 @@ const CameraCard = ({cameraAnswer, setShowCamera}) => {
 
         <>
             <h1 className="app-title"><strong>Emotion Recognition</strong></h1>
-            <p className="app-description">
-                Look at the camera and press capture! we'll help you understand emotions!
-            </p>
+            <p className="app-description">Look at the camera and press capture!<br/> we'll help you understand emotions!</p>
             {
                 !hasCameraSupport ? (
                     <div className="error-message">⚠️ Camera access is not supported in your browser.</div>
@@ -65,6 +67,8 @@ const CameraCard = ({cameraAnswer, setShowCamera}) => {
                         <button id="btn-control-socialemotion" className="btn btn-control" onClick={() => setCameraOn(false)}>
                             🚫 Stop Camera
                         </button>
+                        <div className="response-message-emotions">{response}</div>
+                        <div className="response-message-questions">{task}</div>
                         <div className="camera-wrapper">
                             {error ? (
                                 <div className="error-container">

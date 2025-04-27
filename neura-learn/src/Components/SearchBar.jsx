@@ -2,31 +2,31 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const availableRoutes = {
-  "Games": "/games",
-  "Memory Game": "/games/memory-card",
-  "Wordle Game": "/games/wordle",
-  "Guess Number Game": "/games/guess-number",
-  "Learning Modules": "/learning-modules",
-  "Maths Module": "/learning-modules/maths",
-  "Alphabets Module": "/learning-modules/alphabets",
-  "Colors Module": "/learning-modules/colors",
-  "Shapes Module": "/learning-modules/shapes",
-  "Speech Training": "/learning-modules/Voice/SpeechTraining",
-  "Conversation Training": "/learning-modules/Voice/ConversationTraining",
-  "Voice Training": "/learning-modules/VoiceRecognition",
-  "Emotions Training": "/learning-modules/social-emotions",
-  "Printable Activities": "/printables",
-  "Home": "/home",
-  "Contact": "/contact",
-  "About": "/about",
-  "Profile": "/profile",
-  "Login": "/login",
-  "Sign up": "/signup",
-  "Landing Page": "/",
-  "First Page": "/",
-  "Main Page": "/"
+  "🎮 Games": "/games",
+  "🧠 Memory Game": "/games/memory-card",
+  "🟩 Wordle Game": "/games/wordle",
+  "🔢 Guess Number Game": "/games/guess-number",
+  "📚 Learning Modules": "/learning-modules",
+  "➗ Maths Module": "/learning-modules/maths",
+  "🔤 Alphabets Module": "/learning-modules/alphabets",
+  "🌈 Colors Module": "/learning-modules/colors",
+  "🔵 Shapes Module": "/learning-modules/shapes",
+  "🗣️ Speech Training": "/learning-modules/Voice/SpeechTraining",
+  "💬 Conversation Training": "/learning-modules/Voice/ConversationTraining",
+  "🎤 Voice Training": "/learning-modules/VoiceRecognition",
+  "😌 Emotions Training": "/learning-modules/social-emotions",
+  "🖨️ Printable Activities": "/printables",
+  "🏠 Home": "/home",
+  "📞 Contact": "/contact",
+  "ℹ️ About": "/about",
+  "👤 Profile": "/profile",
+  "🔑 Login": "/login",
+  "📝 Sign up": "/signup",
+  "📍 Landing Page": "/",
+  "📍 First Page": "/",
+  "📍 Main Page": "/"
 };
-
+   
 const SearchBar = ({ isLoggedIn }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -105,7 +105,7 @@ const SearchBar = ({ isLoggedIn }) => {
             left: 0,
             width: '100%',
             margin: 0,
-            padding: '5px',
+            padding: "0 5px 5px 5px",
             listStyle: 'none',
             backgroundColor: '#fff',
             border: '1px solid #ccc',
@@ -126,7 +126,8 @@ const SearchBar = ({ isLoggedIn }) => {
                 padding: '8px',
                 cursor: 'pointer',
                 backgroundColor: hoveredIndex === index ? '#f0f0f0' : 'transparent',
-                transition: 'background-color 0.15s ease'
+                transition: 'background-color 0.15s ease',
+                borderTop: "2px solid gray",
               }}
             >
               {name}

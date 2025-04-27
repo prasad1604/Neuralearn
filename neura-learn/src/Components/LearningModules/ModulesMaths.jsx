@@ -61,7 +61,7 @@ const ModulesMaths = () => {
             <MathsModuleCard
               title="Lesson 2: Numbers and Objects"
               desc="In this lesson, you will match numbers with objects. If you see the number 2, try to find two apples, two toys, or two fingers on your hand."
-              src="/Images/math2.png"
+              src="/Images/math2.jpg"
               alt="Numbers and Objects"
               task="Can you count how many apples are in this picture?"
               action={checkAnswer}

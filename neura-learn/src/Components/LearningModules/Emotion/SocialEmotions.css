@@ -23,9 +23,10 @@
 }
 
 .app-description {
-  color: #4a5568;
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(75, 75, 75);
+  margin-bottom: 20px;
 }
 
 /* Camera Styles */
@@ -33,7 +34,7 @@
   position: relative;
   width: 90%;
   /* 90% of the container or viewport width */
-  max-width: 600px;
+  max-width: 530px;
   /* Limits the width on larger screens */
   margin: 1rem auto;
   /* Center the container with auto side margins */
@@ -175,10 +176,6 @@
     font-size: 2rem;
   }
 
-  .app-description {
-    font-size: 1rem;
-  }
-
   #btn-start-socialemotion,
   #btn-control-socialemotion {
     padding: 0.8rem 1.5rem;
@@ -195,24 +192,49 @@
 
 .body-emotions img {
   display: block;
-  margin: 2rem auto;
+  margin: 1rem auto;
   margin-bottom: 2rem;
   border: 3px solid black;
   border-radius: 10px;
-  width: 650px;
-  height: 650px;
+  width: 550px;
+  height: 550px;
 }
 
 .response-message-emotions {
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   text-align: center;
-  color: #ea3d3d;
+  color: #00c358;
 }
-
-.body-emotions h3, .body-emotions p{
+.response-message-wrong{
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ce2e2e;
+}
+.response-message-questions {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #02a34b;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+.body-emotions h3{
   font-size: 1.3rem;
   font-weight: bold;
   color: rgb(75, 75, 75);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+.description-card{
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(75, 75, 75);
+  border: 3px solid black;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 3px;
 }
