@@ -62,6 +62,9 @@ const MemoryGame = () => {
   function flipCard(id) {
     if (!isPlaying || disableDeck) return;
 
+    const clickedCard = cards.find(c => c.id === id);
+    if (clickedCard.flipped) return;
+
     // flip it
     let updated = cards.map(c =>
       c.id === id ? { ...c, flipped: true } : c
@@ -139,7 +142,8 @@ const MemoryGame = () => {
           <p className="flips">
             Flips: <span><b>{flips}</b></span>
           </p>
-          <button onClick={shuffleCard}>Refresh</button>
+          <button onClick={() => window.location.reload()}>Refresh</button>
+
         </div>
       </div>
     </div></>

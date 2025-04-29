@@ -48,9 +48,9 @@ const SocialEmotions = () => {
       image: "/Images/surprise.jpg"
     },
     {
-      desc: "Look at the picture below! Can you guess how the kids are feeling?",
-      task: "What emotion do you see in this group? Choose your answer below.",
-      correctAnswer: "happiness",
+      desc: "Look at the picture below! What feeling do you think this kid is showing?",
+      task: "What emotion do you see in this picture? Choose your answer below.",
+      correctAnswer: "sadness",
       response: "Great! This is sadness! We feel sad when something makes us unhappy.",
       task2: "Aww... Look into the camera and show your sad face!",
       image: "/Images/sad.jpg"

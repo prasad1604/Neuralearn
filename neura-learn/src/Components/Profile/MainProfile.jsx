@@ -65,6 +65,14 @@ const MainProfile = () => {
 
   return (
     <div style={{
+      backgroundImage: "url('/Images/profile_bg.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      padding: "2rem",
+      minHeight: "100vh",
+    }}>
+    <div style={{
       backgroundColor: "#f5faff",
       padding: "2rem",
       borderRadius: "1rem",
@@ -134,6 +142,7 @@ const MainProfile = () => {
           includeModules={false}
         />
       </div>
+    </div>
     </div>
   );
 };
