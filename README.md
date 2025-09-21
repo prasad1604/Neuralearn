@@ -1,5 +1,7 @@
 # NeuraLearn
 
+## NOTE: The project is amidst a major technological migration, shifting from CRA to Vite and using Spring Boot as the main backend.
+
 **There are three folders:**<br>
 EmpowerEd: is the previous project ideally dont change anything in it.<br>
 neura-learn: is the React App project which is our main project directory.<br>
