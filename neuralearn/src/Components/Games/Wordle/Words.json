@@ -1,0 +1,12 @@
+[
+    { "word": "apple", "description": "A sweet fruit" },
+    { "word": "table", "description": "A piece of furniture" },
+    { "word": "chair", "description": "A piece of furniture for sitting" },
+    { "word": "stone", "description": "A hard, solid nonmetallic mineral matter" },
+    { "word": "plant", "description": "A living organism that grows in the ground" },
+    { "word": "clock", "description": "A device used to tell time" },
+    { "word": "flame", "description": "The hot, glowing gas produced by fire" },
+    { "word": "bread", "description": "A common food made from flour and water" },
+    { "word": "water", "description": "A clear liquid essential for life" },
+    { "word": "train", "description": "A form of transportation on tracks" }
+]

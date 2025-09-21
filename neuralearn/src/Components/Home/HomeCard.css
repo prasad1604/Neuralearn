@@ -1,0 +1,24 @@
+.mb-0 {
+    color: #FFA07A;
+}
+
+.icon-link {
+    color: #FFD93D;
+}
+
+.icon-link-hover:hover {
+    color: #FF6B6B;
+    text-decoration: none;
+}
+
+.shadow-sm {
+    background-color: #FFF6A6;
+    border-radius: 15px;
+}
+
+.col-auto img {
+    width: 200px; 
+    height: 250px; 
+    border-radius: 15px;
+    object-fit: cover;
+}

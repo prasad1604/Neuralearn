@@ -1,0 +1,42 @@
+.carousel-caption h2 {
+    font-size: 2.5rem;
+    color: #FFD93D;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+.carousel-caption p {
+    font-size: 1.5rem;
+    color: #FFD93D;
+}
+
+.carousel-item img {
+    border-radius: 10px;
+    height: 700px;
+    object-fit: cover;
+}
+
+#btn-carousel-danger {
+    background-color: #FF6B6B;
+    border-color: #FF6B6B;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
+}
+
+#btn-carousel-primary {
+    background-color: #6BFF6B;
+    border-color: #6BFF6B;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
+}
+
+#btn-carousel-success {
+    background-color: #6BCBFF;
+    border-color: #6BCBFF;
+    animation: bounce 2s infinite;
+    margin: 0.5rem;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
