@@ -57,6 +57,15 @@ function HomeCard() {
           image="/Images/printable.jpg"
           imagealt="Printable Activities"
         />
+        <CardItem
+          title="🎨 Fun Stories!"
+          subtitle="Story Generation"
+          description="Create fun and relatable social stories instantly."
+          link="/story"
+          linkname="Start Creating ✏️"
+          image="/Images/story.jpg"
+          imagealt="Story Generation"
+        />
       </div>
 
     </div>

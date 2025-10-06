@@ -43,6 +43,18 @@ function ChooseGames() {
                             </div>
                         </div>
                     </div>
+                    {/*
+                    <div className="col-md-4 col-sm-6 mb-4">
+                        <div className="game-card">
+                            <img src="/Images/draw.png" alt="Game 1" className="img-fluid" />
+
+                            <div className="card-content">
+                                <h3 className="text-center">🎯 Shape Dragging Game</h3>
+                                <p className="text-center"> Drag and drop shapes to their matching outlines! Improve your spatial skills and hand-eye coordination in this fun, interactive puzzle game.</p>
+                                    <Link className="btn btn-primary btn-block" to="/games/shape-dragging">Play Now!</Link>
+                            </div>
+                        </div>
+                    </div>*/}
                 </div>
             </div>
         </section>

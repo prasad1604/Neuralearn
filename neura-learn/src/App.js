@@ -32,6 +32,8 @@ import VoiceRecognition from "./Components/LearningModules/Voice/VoiceRecognitio
 import SpeechTraining from "./Components/LearningModules/Voice/SpeechTraining";
 import ConversationTraining from "./Components/LearningModules/Voice/ConversationTraining";
 
+import StoryGeneration from "./Components/Story/StoryGeneration";
+
 import TestColors from "./Components/LearningModules/TestColors";
 import TestShapes from "./Components/LearningModules/TestShapes";
 import TestAlphabets from "./Components/LearningModules/TestAlphabets";
@@ -56,6 +58,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/printables" element={<PrintableActivities />} />
+          <Route path="/story" element={<StoryGeneration />} />
 
           <Route path="/profile" element={<MainProfile/>} />
           <Route path="/profile/update" element={<UpdateProfile />} />

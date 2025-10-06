@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraLearn - Social Story Generator</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=ABeeZee:wght@400;400i&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Container with Gradient Background -->
+    <div class="container-fluid main-background">
+        
+        <!-- Header Section -->
+        <header class="text-center py-4 mb-4">
+            <div class="container">
+                <h1 class="display-3 header-title text-white mb-3">
+                    <span class="logo-emoji">📚</span>
+                    NeuraLearn Social Stories
+                </h1>
+                <p class="lead text-white-75 fs-4">Create personalized stories just for you!</p>
+            </div>
+        </header>
+
+        <!-- User Profile Section -->
+        <section class="container mb-5">
+            <div class="card profile-card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient-primary text-white text-center py-3">
+                    <div class="avatar-circle mx-auto mb-2">👤</div>
+                    <h2 class="card-title mb-0 fs-3">Your Profile</h2>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="profile-item bg-info-subtle border border-info rounded-3 p-3">
+                                <span class="profile-icon me-2">👋</span>
+                                <span class="profile-label fw-semibold">Name:</span>
+                                <span class="profile-value ms-2" id="username">Alex</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-item bg-warning-subtle border border-warning rounded-3 p-3">
+                                <span class="profile-icon me-2">🎂</span>
+                                <span class="profile-label fw-semibold">Age:</span>
+                                <span class="profile-value ms-2" id="age">8 years old</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-item bg-success-subtle border border-success rounded-3 p-3">
+                                <span class="profile-icon me-2">🌈</span>
+                                <span class="profile-label fw-semibold">Favorite Color:</span>
+                                <span class="profile-value ms-2" id="favoriteColor">Blue</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-item bg-primary-subtle border border-primary rounded-3 p-3">
+                                <span class="profile-icon me-2">🐱</span>
+                                <span class="profile-label fw-semibold">Favorite Animal:</span>
+                                <span class="profile-value ms-2" id="favoriteAnimal">Cat</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-item bg-danger-subtle border border-danger rounded-3 p-3">
+                                <span class="profile-icon me-2">🍕</span>
+                                <span class="profile-label fw-semibold">Favorite Food:</span>
+                                <span class="profile-value ms-2" id="favoriteFood">Pizza</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="profile-item bg-secondary-subtle border border-secondary rounded-3 p-3">
+                                <span class="profile-icon me-2">📺</span>
+                                <span class="profile-label fw-semibold">Favorite Cartoon:</span>
+                                <span class="profile-value ms-2" id="favoriteCartoon">Bluey</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Options Section -->
+        <main class="container">
+            <!-- Section Title -->
+            <div class="text-center mb-5">
+                <h2 class="section-title text-white display-5 mb-3">Choose Your Story Adventure!</h2>
+            </div>
+            
+            <!-- Predefined Stories -->
+            <section class="mb-5">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-gradient-success text-white text-center py-4">
+                        <h3 class="card-title mb-0 fs-2">🌟 Ready-Made Stories</h3>
+                        <p class="mb-0 mt-2 fs-5">Click on any story to create a personalized version just for you!</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-4" id="storyGrid">
+                            <!-- Story cards will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Custom Story Generator -->
+            <section class="mb-5">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-gradient-warning text-white text-center py-4">
+                        <h3 class="card-title mb-0 fs-2">✨ Create Your Own Story</h3>
+                        <p class="mb-0 mt-2 fs-5">Tell us what story you'd like to hear!</p>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Prompt Suggestions -->
+                        <div class="mb-4">
+                            <p class="fw-semibold fs-5 mb-3 text-center">💡 Need ideas? Try these:</p>
+                            <div class="d-flex flex-wrap justify-content-center gap-2" id="promptSuggestions">
+                                <!-- Suggestions will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Text Input -->
+                        <div class="mb-4">
+                            <textarea 
+                                id="customPrompt" 
+                                class="form-control form-control-lg rounded-3 border-2" 
+                                placeholder="Write about what kind of story you want... For example: 'Write a story about sharing toys at school' or 'Create a story about going to the dentist'"
+                                rows="4"
+                                style="font-size: 1.1rem;"
+                            ></textarea>
+                            <div class="mt-2" id="inputValidation"></div>
+                        </div>
+                        
+                        <!-- Generate Button -->
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow" id="generateCustomBtn" style="font-size: 1.2rem;">
+                                <span class="me-2">✨</span>
+                                Create My Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Story Display -->
+            <section class="mb-5 d-none" id="storyDisplay">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-gradient-info text-white d-flex justify-content-between align-items-center py-3">
+                        <h3 class="card-title mb-0 fs-2" id="storyTitle">Your Personalized Story</h3>
+                        <button class="btn btn-outline-light btn-sm rounded-pill" id="closeStory">
+                            <span class="me-1">✖️</span>
+                            Close
+                        </button>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="story-text bg-light border border-2 border-info rounded-3 p-4 mb-4" id="storyText" style="font-size: 1.1rem; line-height: 1.8;">
+                            <!-- Generated story will appear here -->
+                        </div>
+                        <div class="text-center">
+                            <div class="btn-group gap-3" role="group">
+                                <button class="btn btn-warning btn-lg rounded-pill px-4" id="regenerateBtn">
+                                    <span class="me-2">🔄</span>
+                                    Make Another Story
+                                </button>
+                                <button class="btn btn-outline-primary btn-lg rounded-pill px-4" id="printBtn">
+                                    <span class="me-2">🖨️</span>
+                                    Print Story
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body text-center p-5">
+                    <div class="loading-spinner fs-1 mb-4">📖</div>
+                    <h3 class="text-primary mb-3">Creating your story...</h3>
+                    <p class="text-secondary fs-5">Please wait while we personalize your story just for you!</p>
+                    <div class="progress mt-4" style="height: 8px;">
+                        <div class="progress-bar bg-gradient-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-body text-center p-5">
+                    <div class="error-icon fs-1 mb-4">😊</div>
+                    <h3 class="text-primary mb-3">Oops! Let's try again</h3>
+                    <p class="text-secondary fs-5 mb-4" id="errorMessage">Please write about a story you'd like to hear. Try asking for stories about school, friends, or daily activities!</p>
+                    <button class="btn btn-primary btn-lg rounded-pill px-4" id="closeErrorBtn">
+                        <span class="me-2">👍</span>
+                        Got it!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
