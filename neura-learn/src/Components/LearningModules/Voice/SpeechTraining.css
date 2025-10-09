@@ -8,7 +8,7 @@
 }
 
 .background-image {
-  background: url('/public/Images/child-smiling.png') center/cover no-repeat;
+  background: url('/Images/child-smiling.png') center/cover no-repeat;
   height: 100%;
   width: 100%;
   position: relative;
