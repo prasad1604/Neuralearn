@@ -1,8 +1,0 @@
-# Ignore all files in the 'datasets' directory
-Datasets/
-Models/
-__pycache__/
-# But keep the datasets folder (if it has a .keep file or is non-empty)
-!Datasets/.keep
-!Models/.keep
-

@@ -100,7 +100,7 @@ const SocialEmotions = () => {
 
 
       try {
-        const response = fetch("http://localhost:8000/test", {
+        const response = fetch("/api/test", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

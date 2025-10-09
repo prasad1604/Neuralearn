@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./ConversationTraining.css";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:9000";
+
 // Completion screen with percentage & pass/fail messaging
 const CompletionScreen = ({ score, total }) => {
   const pct = total ? Math.round((score / (total * 10)) * 100) : 0;
@@ -156,7 +158,7 @@ const ConversationTraining = () => {
   // Load questions
   useEffect(() => {
     axios
-      .get(`/api/speech/questions/${selectedSet}`, {
+      .get(`${API_BASE}/questions/${selectedSet}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       .then((res) => {
@@ -233,7 +235,7 @@ const ConversationTraining = () => {
     }
 
     try {
-      const res = await axios.post('/api/speech/analyze', formData, {
+      const res = await axios.post(`${API_BASE}/analyze`, formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
           "Content-Type": "multipart/form-data",

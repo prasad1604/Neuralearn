@@ -16,7 +16,7 @@ const MainProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("/api/profile", {
+        const res = await axios.get("http://localhost:8000/profile", {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -32,7 +32,7 @@ const MainProfile = () => {
 
     const fetchTestResults = async () => {
       try {
-        const res = await axios.get("/api/test", {
+        const res = await axios.get("http://localhost:8000/test", {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -96,26 +96,9 @@ const MainProfile = () => {
           fontSize: "1.3rem",
           lineHeight: "2rem"
         }}>
-            {profile.username && (
-              <p>
-                <strong style={{ color: "#333" }}>Name:</strong>{" "}
-                <span style={{ fontWeight: "500" }}>{profile.username}</span>
-              </p>
-            )}
-
-            {profile.gender && (
-              <p>
-                <strong style={{ color: "#333" }}>Gender:</strong>{" "}
-                <span style={{ fontWeight: "500" }}>{profile.gender}</span>
-              </p>
-            )}
-
-            {profile.age && (
-              <p>
-                <strong style={{ color: "#333" }}>Age:</strong>{" "}
-                <span style={{ fontWeight: "500" }}>{profile.age}</span>
-              </p>
-            )}
+          <p><strong style={{ color: "#333" }}>Name:</strong> <span style={{ fontWeight: "500" }}>{profile.username}</span></p>
+          <p><strong style={{ color: "#333" }}>Gender:</strong> <span style={{ fontWeight: "500" }}>{profile.gender}</span></p>
+          <p><strong style={{ color: "#333" }}>Age:</strong> <span style={{ fontWeight: "500" }}>{profile.age}</span></p>
         </div>
       ) : (
         <p style={{ textAlign: "center", fontSize: "1.2rem" }}>No profile data found.</p>

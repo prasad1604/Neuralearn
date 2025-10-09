@@ -4,11 +4,11 @@ from contextlib import asynccontextmanager
 from database import check_mongo_connection, close_mongo_connection
 
 from route_auth import auth_router
-from route_model import model_router
+from route_emotion import emotion_router
+from route_speech import speech_router
 from route_profile import profile_router
 from route_test import test_router
 from protected import protected_router
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -16,11 +16,11 @@ async def lifespan(app: FastAPI):
     yield 
     await close_mongo_connection()  
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, root_path="/api")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,7 +28,8 @@ app.add_middleware(
 
 # Register routers
 app.include_router(auth_router, prefix="/auth")
-app.include_router(model_router, prefix="/model")
+app.include_router(emotion_router, prefix="/emotion")
+app.include_router(speech_router, prefix="/speech")
 app.include_router(profile_router)
 app.include_router(test_router)
 app.include_router(protected_router)

@@ -19,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:8000/profile", {
+        const response = await fetch("/api/profile", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json"
@@ -63,7 +63,7 @@ const handleSave = async (e) => {
   };
 
   try {
-    const response = await fetch("http://localhost:8000/profile", {
+    const response = await fetch("/api/profile", {
       method: "PUT",
       headers: {
 

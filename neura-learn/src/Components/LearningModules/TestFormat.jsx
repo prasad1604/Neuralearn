@@ -51,7 +51,7 @@ const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
 
     const submit = async () => {
       try {
-        const response = await fetch("http://localhost:8000/test", {
+        const response = await fetch("/api/test", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -1,7 +1,7 @@
 /* Background styling */
 .background-container {
     position: relative;
-    background: url('/public/Images/convo_back.jpg') no-repeat center top;
+    background: url('/Images/convo_back.jpg') no-repeat center top;
     background-size: cover;
     min-height: 100vh;
     width: 100%;

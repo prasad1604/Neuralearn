@@ -35,7 +35,7 @@ const CameraCard = ({cameraAnswer, setShowCamera, response, task, setAttempts, c
             const formData = new FormData();
             formData.append("file", blob, "capture.jpg");
 
-            const response = await axios.post("http://localhost:8000/model/predict-emotion", formData, {
+            const response = await axios.post("/api/emotion/predict-emotion", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             const temp = response.data.emotion

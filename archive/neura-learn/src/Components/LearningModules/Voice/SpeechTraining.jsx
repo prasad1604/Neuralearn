@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import axios from "axios";
 import "./SpeechTraining.css";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:9000";
+
 const SpeechTraining = () => {
   const [currentWord, setCurrentWord] = useState("");
   const [words, setWords] = useState([]);
@@ -77,7 +79,7 @@ const SpeechTraining = () => {
 
     const token = localStorage.getItem("token");
     axios
-      .get('/api/speech/speech-training/words', {
+      .get(`${API_BASE}/api/speech-training/words`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -200,7 +202,7 @@ const SpeechTraining = () => {
         form.append("text_response", textResponse || "");
       }
 
-      const res = await axios.post('/api/speech/analyze', form, {
+      const res = await axios.post(`${API_BASE}/analyze`, form, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -326,7 +328,7 @@ const SpeechTraining = () => {
       <div
         className="background-image"
         style={{
-          backgroundImage: `url(/Images/child-smiling.png)`,
+          backgroundImage: `url(${process.env.PUBLIC_URL}/Images/child-smiling.png)`,
         }}
       >
         {showWord && level === 1 && (

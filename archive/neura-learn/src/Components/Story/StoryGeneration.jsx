@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Modal, Button} from 'react-bootstrap';
-import './StoryGeneration.css'
+import { Modal, Button} from 'react-bootstrap'; // Install react-bootstrap and bootstrap if not done already
+import './style.css'
 
 const userProfile = {
   username: "Kunal",
@@ -276,7 +276,7 @@ This is my story about ${topic}, and I am the hero of my own adventure! Every da
   };
 
   return (
-    <div className="story-generation">
+    <div>
       <div className="container-fluid main-background">
         <header className="text-center py-4 mb-4">
           <div className="container">
