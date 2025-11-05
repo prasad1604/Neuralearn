@@ -24,6 +24,7 @@ import ResetPassword from "./Components/Auth/ResetPassword";
 
 import LearningModules from './Components/LearningModules/LearningModules';
 import StoryGeneration from "./Components/Story/StoryGeneration";
+import StoryReader from "./Components/Story/StoryReader";
 import Chatbot from "./Components/Chatbot/Chatbot";
 import ModulesMaths from "./Components/LearningModules/ModulesMaths";
 import ModulesAlphabets from "./Components/LearningModules/ModulesAlphabets";
@@ -67,6 +68,7 @@ function App() {
           <Route path="/games/wordle" element={<WordleGame />} />
           <Route path="/games/memory-card" element={<MemoryGame />} />
           <Route path="/story" element={<StoryGeneration />} />
+          <Route path="/story/reader" element={<StoryReader />} />
           <Route path="/chatbot" element={<Chatbot />} />
 
 
@@ -85,7 +87,6 @@ function App() {
           <Route path="/learning-modules/shapes/test" element={<TestShapes />} />
           
           <Route path="/learning-modules/Voice/SpeechTraining" element={<SpeechTraining />} />
-          {/*<Route path="/learning-modules/Voice/EmotionPractice" element={<EmotionPractice />} />*/}
           <Route path="/learning-modules/Voice/ConversationTraining" element={<ConversationTraining />} />
           
           <Route path="/learning-modules/social-emotions" element={<SocialEmotions />} />
