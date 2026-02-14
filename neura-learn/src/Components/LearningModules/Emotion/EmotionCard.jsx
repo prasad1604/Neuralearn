@@ -2,6 +2,11 @@ import NavigationButtons from "../NavigationButtons";
 import { useState, useEffect, useRef } from 'react'
 // import TextToSpeech from "../../TextToSpeech";
 
+let voicesReady = [];
+window.speechSynthesis.onvoiceschanged = () => {
+  voicesReady = window.speechSynthesis.getVoices();
+};
+
 const hasTTS = () =>
   typeof window !== "undefined" &&
   "speechSynthesis" in window &&
@@ -19,7 +24,7 @@ const TextToSpeech = (sentence, wait = false, opts = {}) => {
     }
 
     const utterance = new SpeechSynthesisUtterance(sentence);
-    const voices = window.speechSynthesis.getVoices?.() || [];
+    const voices = voicesReady.length ? voicesReady : window.speechSynthesis.getVoices();
 
     const {
       voiceName,

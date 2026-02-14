@@ -49,7 +49,7 @@ const Signup = () => {
 
   return (
     <div className="login-container" style={{ background: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" }}>
-      <div className="signup-card">
+      <div className="login-card" style={{ marginTop: "20px", marginBottom: "20px" }}>
         <div className="character-container">
           <img src="/Images/signup-penguin.jpg" alt="Happy Penguin" className="welcome-character" />
           <div className="speech-bubble">Let's Be Friends! 🐧</div>
@@ -145,13 +145,12 @@ const Signup = () => {
         </form>
 
         <div className="login-link" style={{ color: "#4d4d4d", marginTop: "20px" }}>
-          Already a member? <Link to="/login" style={{ color: "#ff6b6b", fontWeight: "bold" }}>Come Play Again! 🎈</Link>
+          Already a member? <Link to="/login" style={{ color: "#ff6b6b", fontWeight: "bold", textDecoration: "underline wavy" }}>Come Play Again!🎈</Link>
         </div>
 
         <div className="decorations">
-          <div className="balloon balloon-1">🎈</div>
-          <div className="balloon balloon-2">🎈</div>
-          <div className="star star-3">🌈</div>
+          <div className="star star-1">⭐</div>
+          <div className="star star-2">⭐</div>
         </div>
       </div>
     </div>
