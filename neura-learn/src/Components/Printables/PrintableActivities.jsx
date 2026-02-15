@@ -6,7 +6,8 @@ function PrintableActivities() {
 
         <div className="background-printable">
 
-
+            <div className="container">
+                <div className="row justify-content-center">
             <PrintablesItem
                 title="🎨 Fun Puzzle to solve!"
                 image="/Images/print2.jpg"
@@ -38,7 +39,8 @@ function PrintableActivities() {
                 imagealt="Coloring Page 1"
                 downloadname="coloring1.jpg"
             />
-
+            </div>
+            </div>
         </div>
 
     )

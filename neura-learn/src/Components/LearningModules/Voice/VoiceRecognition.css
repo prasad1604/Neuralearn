@@ -4,8 +4,9 @@
   animation: voiceBackgroundAnimation 10s ease infinite;
   color: #333;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
-  padding: 1.5rem;
-  min-height: 100vh;
+
+  padding: clamp(0.6rem, 2vw, 1.5rem);
+  min-height: 100dvh;
 }
 
 @keyframes voiceBackgroundAnimation {
@@ -16,11 +17,11 @@
 
 .voice-title {
   color: #4b4b4b;
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
   text-shadow: 2px 2px 5px #fff;
   margin-top: 0;
   text-align: center;
-  padding: 1rem 0;
 }
 
 .voice-subject-selection {
@@ -29,15 +30,15 @@
 }
 
 .voice-card {
-  margin: 20px;
-  padding: 30px;
+  margin: clamp(8px, 2vw, 20px);
+  padding: clamp(16px, 3vw, 30px);
   text-align: center;
   background-color: #fbe6a2;
   border-radius: 15px;
   transition: transform 0.3s, background-color 0.3s;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   min-height: 200px;
   display: flex;
   flex-direction: column;
@@ -52,8 +53,8 @@
 
 .voice-card i {
   color: #ff6f91;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  margin-bottom: clamp(0.6rem, 2vw, 1.5rem);
   animation: voiceIconBounce 2s infinite;
 }
 
@@ -63,8 +64,8 @@
 }
 
 .voice-progress {
-  margin-top: 30px;
-  height: 30px;
+  margin-top: clamp(15px, 3vw, 30px);
+  height: clamp(16px, 2.5vw, 30px);
   border-radius: 10px;
   background-color: #f0f0f0;
 }
