@@ -1,50 +1,87 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 from models import TestResults
 from helper import get_current_user
-from database import users_collection
+from database import users_collection, test_results_collection  # <-- new collection
 
 test_router = APIRouter()
 
+
 @test_router.get("/test")
 async def get_test(user: dict = Depends(get_current_user)):
-    return user.get("TestResults", [])
+    user_id = str(user["_id"])
+    tests = await test_results_collection.find({"user_id": user_id}).to_list(100)
+
+    for test in tests:
+        if '_id' in test:
+            test['_id'] = str(test['_id'])
+    return tests
 
 
 @test_router.put("/test", status_code=status.HTTP_200_OK)
 async def update_test(test_data: TestResults, user: dict = Depends(get_current_user)):
-    user_id = user["_id"]
+
+    user_id = str(user["_id"])
     module_name = test_data.module
-    test_marks = test_data.marks
+    marks = test_data.marks
+    timestamps = test_data.timestamps
 
-    if not module_name or not test_marks:
-        raise HTTPException(status_code=400, detail="Module and at least one score are required.")
-
-    # Try to update existing module's marks
-    update_result = await users_collection.update_one(
-        {"_id": user_id, "TestResults.module": module_name},
-        {"$push": {"TestResults.$.marks": {"$each": test_marks}}}
-    )
-
-    # If no existing module found, create a new one
-    if update_result.modified_count == 0:
-        await users_collection.update_one(
-            {"_id": user_id},
-            {"$push": {"TestResults": test_data.dict()}}
+    if not module_name or not marks or not timestamps:
+        raise HTTPException(
+            status_code=400,
+            detail="Module, at least one mark, and corresponding timestamp are required."
         )
 
-    updated_user = await users_collection.find_one({"_id": user_id})
-    return updated_user.get("TestResults", [])
+    if len(marks) != len(timestamps):
+        raise HTTPException(
+            status_code=400,
+            detail="Number of marks must match number of timestamps."
+        )
+
+    # Check if module exists for this user
+    existing = await test_results_collection.find_one({"user_id": user_id, "module": module_name})
+
+    if existing:
+        # Append new marks and timestamps
+        await test_results_collection.update_one(
+            {"_id": existing["_id"]},
+            {
+                "$push": {
+                    "marks": {"$each": marks},
+                    "timestamps": {"$each": timestamps}
+                }
+            }
+        )
+    else:
+        # Insert new document for this module
+        await test_results_collection.insert_one({
+            "user_id": user_id,
+            "module": module_name,
+            "marks": marks,
+            "timestamps": timestamps
+        })
+
+    # Return all test results for this user
+    updated_tests = await test_results_collection.find({"user_id": user_id}).to_list(100)
+
+    
+    for test in updated_tests:
+        if '_id' in test:
+            test['_id'] = str(test['_id'])
+
+    return updated_tests
 
 
 @test_router.get("/test/summary", status_code=status.HTTP_200_OK)
 async def get_test_summary(user: dict = Depends(get_current_user)):
-    user_id = user["_id"]
-    user_data = await users_collection.find_one({"_id": user_id})
+    user_id = str(user["_id"])
+    test_results = await test_results_collection.find({"user_id": user_id}).to_list(100)
 
-    test_results = user_data.get("TestResults", [])
+    for result in test_results:
+        if '_id' in result:
+            result['_id'] = str(result['_id'])
+
     summary = []
-
-    max_tests = 10  # total number of tests expected per subject (adjust if needed)
+    max_tests = 10  # total number of tests expected per subject
 
     for result in test_results:
         marks = result.get("marks", [])

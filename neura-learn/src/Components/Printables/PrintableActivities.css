@@ -11,7 +11,7 @@
     background-color: #fff5ee;
     width: 100%;
     max-width: clamp(320px, 40vw, 460px);
-    margin: 0 auto;     /* centers horizontally */
+    margin: 0 auto;     
 }
 
 .btn-printable {

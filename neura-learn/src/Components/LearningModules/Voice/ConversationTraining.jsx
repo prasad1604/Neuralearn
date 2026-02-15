@@ -45,6 +45,7 @@ const ConversationTraining = () => {
   const [score, setScore] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [sessionCompleted, setSessionCompleted] = useState(false);
+    const submittedRef = useRef(false);
 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
@@ -55,6 +56,8 @@ const ConversationTraining = () => {
   const selectedVoice = useRef(null);
 
   const [authToken] = useState(localStorage.getItem("token"));
+
+
 
   // Track attempts per question
   const attemptsRef = useRef({});
@@ -171,6 +174,38 @@ const ConversationTraining = () => {
     const q = questionSets[selectedSet]?.[currentQuestionIndex];
     if (q) speakText(q);
   }, [currentQuestionIndex, questionSets, selectedSet]);
+
+  useEffect(() => {
+    if (sessionCompleted && !submittedRef.current) {
+      submittedRef.current = true;
+
+      const submitScore = async () => {
+        try {
+            const response = await fetch("/api/test", {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ module: "Conversation", marks: [Math.min(5, Math.floor(score / 2))], timestamps: [new Date().toISOString()] }),
+            });
+
+            if (!response.ok) {
+
+              console.error("Failed to save score:", response.status, await response.text());
+              return;
+            }
+
+            console.log("Score saved successfully!");
+          } catch (err) {
+
+            console.error("Network error while saving score:", err);
+          }
+      };
+
+      submitScore();
+    }
+  }, [sessionCompleted, score]);
 
   // Hover to speak
   const handleHoverSpeak = (text) => {

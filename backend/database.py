@@ -5,6 +5,7 @@ MONGO_URL = "mongodb://localhost:27017"
 client = AsyncIOMotorClient(MONGO_URL)
 db = client["auth_db"]
 users_collection = db["users"]
+test_results_collection = db["test_results"]
 
 async def check_mongo_connection():
     try:

@@ -4,19 +4,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: clamp(12px, 4vw, 20px);
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   }
   
   /* Card Styles */
   .profile-card {
     background: white;
-    padding: 40px;
-    border-radius: 30px;
+    padding: clamp(18px, 4vw, 40px);
+    margin: clamp(10px, 2vw, 30px);
+    border-radius: clamp(18px, 4vw, 30px);
     box-shadow: 0 10px 30px rgba(78,205,196,0.2);
     position: relative;
     transform: rotate(1deg);
-    max-width: 600px;
+    max-width: clamp(320px, 90vw, 600px);
     width: 100%;
   }
   
@@ -38,25 +39,25 @@
     color: #4ecdc4;
     font-family: 'Bubblegum Sans', cursive;
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    margin-bottom: clamp(15px, 3vw, 25px);
   }
   
   .section-title {
     color: #ff6b6b;
     font-family: 'Bubblegum Sans', cursive;
     text-align: center;
-    margin: 35px 0;
-    margin-bottom: 0px;
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    margin: clamp(5px, 1.5vw, 12px) 0 0;
+    padding: clamp(10px, 2vw, 20px);
   }
   
   .profile-label {
     color: #4d4d4d;
     font-family: 'Comic Neue', cursive;
     display: block;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    margin-bottom: clamp(8px, 2vw, 15px);
   }
   
   /* Input Fields */
@@ -64,9 +65,9 @@
   .color-text-input,
   .emoji-input {
     font-family: 'Comic Neue', cursive;
-    font-size: 18px;
-    border-radius: 15px;
-    padding: 12px;
+    font-size: clamp(14px, 2.5vw, 18px);
+    padding: clamp(8px, 2vw, 12px);
+    border-radius: clamp(10px, 2vw, 15px);
     margin-top: 8px;
     width: 100%;
     border: 3px solid;
@@ -89,7 +90,6 @@
     gap: 20px;
   }
   
-  /* Color Input Section */
   .color-input-container {
     display: flex;
     gap: 15px;
@@ -103,8 +103,8 @@
   }
   
   .color-preview {
-    width: 50px;
-    height: 50px;
+    width: clamp(30px, 8vw, 50px);
+    height: clamp(30px, 8vw, 50px);
     border-radius: 10px;
     border: 3px solid white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -122,21 +122,21 @@
   .color-item { border-color: #ff6b6b; }
   .food-item { border-color: #4ecdc4; }
   .animal-item { border-color: #ffd700; }
-  .cartoon-item { border-color: #a8edea; }
+  .cartoon-item { border-color: #7795ff; }
   
   /* Save Button */
   .save-button {
     background: linear-gradient(45deg, #4ecdc4, #88dac8);
     border: none;
     border-radius: 25px;
-    padding: 15px 30px;
-    font-size: 20px;
+    font-size: clamp(14px, 3vw, 20px);
+    padding: clamp(10px, 2.5vw, 15px) clamp(18px, 4vw, 30px);
     font-family: 'Bubblegum Sans', cursive;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
     display: block;
-    margin: 20px auto 0;
+    margin: clamp(20px, 5vw, 50px) auto 0 !important;
   }
   
   .save-button:hover {
@@ -157,23 +157,23 @@
   }
   
   .welcome-character {
-    width: 150px;
+    width: clamp(80px, 20vw, 150px);
     height: auto;
     animation: bounce 2s infinite;
   }
   
   .speech-bubble {
     position: absolute;
-    top: -40px;
+    font-size: clamp(0.75rem, 2.5vw, 1.1rem);
+    padding: clamp(6px, 2vw, 10px) clamp(10px, 3vw, 20px);
+    top: clamp(-30px, -5vw, -40px);
     left: 50%;
     transform: translateX(-50%);
     background: white;
-    padding: 10px 20px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     font-family: 'Comic Neue', cursive;
     color: #ff6b6b;
-    font-size: 1.1rem;
   }
   
   .decorations {
@@ -187,7 +187,7 @@
   
   .star {
     position: absolute;
-    font-size: 24px;
+        font-size: clamp(14px, 4vw, 24px);
     animation: float 3s infinite;
   }
   
@@ -196,7 +196,7 @@
   
   .cloud {
     position: absolute;
-    font-size: 40px;
+    font-size: clamp(22px, 6vw, 40px);
     opacity: 0.3;
     animation: drift 10s infinite linear;
   }
@@ -212,7 +212,7 @@
     color: #4ecdc4;
     font-family: 'Bubblegum Sans', cursive;
     animation: bounce 1s;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   }
   
   @keyframes float {
@@ -224,3 +224,20 @@
     from { transform: translateX(-100%); }
     to { transform: translateX(100%); }
   }
+
+  @media (max-width: 600px) {
+
+    .gender-age-grid,
+    .favourites-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .favorite-item {
+        padding: clamp(8px, 3vw, 15px);
+    }
+
+    .color-input-container {
+        gap: 8px;
+    }
+}
