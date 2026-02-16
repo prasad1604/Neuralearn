@@ -13,7 +13,7 @@ load_dotenv()
 story_router = APIRouter(tags=["Story"])
 
 POLLINATIONS_TOKEN = os.getenv("POLLINATIONS_TOKEN")  # optional but recommended for server-side
-POLLINATIONS_URL = "https://text.pollinations.ai/openai"
+POLLINATIONS_URL = "https://gen.pollinations.ai/v1/chat/completions"
 
 app = FastAPI()
 
@@ -52,10 +52,12 @@ def _pollinations_chat(prompt: str, max_tokens: int = 900, temperature: float = 
         headers["Authorization"] = f"Bearer {POLLINATIONS_TOKEN}"
 
     payload = {
-    "model": "openai",
-    "messages": [{"role": "user", "content": prompt}],
+    "model": "mistral",  # best free model
+    "messages": [
+        {"role": "user", "content": prompt}
+    ],
     "max_tokens": int(max_tokens),
-    "stream": False,
+    "temperature": temperature,
     }
 
     try:
@@ -387,112 +389,3 @@ def continue_story(req: StoryContinueRequest):
 
 # Register the router
 app.include_router(story_router, prefix="/api/story")
-
-'''
-# mock_story_backend.py
-from fastapi import FastAPI, APIRouter, HTTPException
-from pydantic import BaseModel, Field
-from typing import List
-
-app = FastAPI()
-story_router = APIRouter(tags=["Story"])
-
-# ======= Models =======
-class StoryRequest(BaseModel):
-    username: str = Field(..., min_length=1)
-    age: int = Field(..., ge=0, le=18)
-    gender: str
-    favoriteColor: str
-    favoriteAnimal: str
-    favoriteFood: str
-    favoriteCartoon: str
-    target_behavior: str = Field(..., min_length=1)
-
-class StoryStartResponse(BaseModel):
-    partial_story: str
-    title: str
-    options: List[str]
-
-class StoryContinueRequest(BaseModel):
-    partial_story: str
-    selected_option: str
-
-# ======= Fixed sample content (Sections 1–4) =======
-S14 = (
-    "1. Prasad and the Playground Adventure\n\n"
-    "2. Prasad loves to play at the playground near his house. He especially enjoys the swings and the slide. "
-    "Today, he sees other children playing with the toys he likes. Prasad wants to have fun, but he is not sure how to join in.\n\n"
-    "3. At the playground, there are many children waiting to use the slide. Prasad wants to go down the slide right away. "
-    "He sees that others are taking turns, but he is excited and wants to play now.\n\n"
-    "4. A. Prasad decides to wait for his turn and watches as others slide down, counting to make it fair.\n"
-    "   B. Prasad pushes another child to get to the front and slides down quickly, making others upset.\n"
-    "   C. Prasad walks away from the slide and plays alone on the swings, missing the fun of sliding."
-)
-
-TITLE = "Prasad and the Playground Adventure"
-OPTIONS = [
-    "Prasad decides to wait for his turn and watches as others slide down, counting to make it fair.",
-    "Prasad pushes another child to get to the front and slides down quickly, making others upset.",
-    "Prasad walks away from the slide and plays alone on the swings, missing the fun of sliding.",
-]
-
-# ======= Fixed sample continuations (Sections 5–9) =======
-CONT_WAIT = (
-    "5. Prasad waits in line and watches each child slide down. The children smile and the adult nearby nods, and Prasad looks calm and patient.\n\n"
-    "6. When someone steps ahead by mistake, the adult says, \"Please wait your turn.\" Prasad stays in line.\n\n"
-    "7. Prasad says, \"I got it.\"\n\n"
-    "8. When it is his turn, Prasad slides down and laughs. The children look happy and relaxed.\n\n"
-    "9. Prasad learns that waiting his turn helps everyone feel comfortable and have fun together."
-)
-
-CONT_PUSH = (
-    "5. Prasad pushes another child to get to the front and slides down quickly, making others upset. "
-    "Some of the children start to cry, and the adults nearby look concerned. Prasad looks guilty and worried.\n\n"
-    "6. An adult walks over and says, \"Please wait your turn. Pushing is not okay.\"\n\n"
-    "7. Prasad says, \"Sorry.\"\n\n"
-    "8. Prasad goes back to the line and waits. The child he pushed looks relieved, and the children begin playing again.\n\n"
-    "9. Prasad learns that taking turns keeps everyone safe and happy."
-)
-
-CONT_AVOID = (
-    "5. Prasad walks away from the slide and sits alone on the swings. The other children keep taking turns, and Prasad looks bored and a little sad.\n\n"
-    "6. A friend waves and says, \"You can wait with us if you want.\"\n\n"
-    "7. Prasad says, \"Okay.\"\n\n"
-    "8. He returns to the line and waits. Soon he gets a turn, and he looks happy and relaxed.\n\n"
-    "9. Prasad learns that joining the line and taking turns helps him play with friends and enjoy the slide."
-)
-
-def pick_continuation(selected_option: str) -> str:
-    s = (selected_option or "").lower()
-    if "push" in s or "front" in s or "rule" in s:
-        return CONT_PUSH
-    if "walk away" in s or "alone" in s or "avoid" in s or "swings" in s:
-        return CONT_AVOID
-    # default to the desirable branch (wait turn)
-    return CONT_WAIT
-
-# ======= Routes =======
-@story_router.post("/generate-story/start", response_model=StoryStartResponse)
-def start_story(_: StoryRequest):
-    # Return fixed Sections 1–4 + parsed title + options
-    return StoryStartResponse(
-        partial_story=S14,
-        title=TITLE,
-        options=OPTIONS,
-    )
-
-@story_router.post("/generate-story/continue")
-def continue_story(req: StoryContinueRequest):
-    if not req.partial_story or not req.selected_option:
-        raise HTTPException(status_code=400, detail="partial_story and selected_option are required.")
-    cont = pick_continuation(req.selected_option)
-    return {"continuation": cont}
-
-# mount
-app.include_router(story_router, prefix="/api/story")
-
-# Optional root
-@app.get("/")
-def root():
-    return {"ok": True, "mock": True}
-'''
