@@ -1,13 +1,17 @@
 .background-printable {
     background: url('https://www.transparenttextures.com/patterns/bright-squares.png');
     font-family: 'Comic Neue', cursive;
-    padding: 30px
+    padding: clamp(12px, 4vw, 30px);
 }
+
 
 #card-printable {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #fff5ee;
+    width: 100%;
+    max-width: clamp(320px, 40vw, 460px);
+    margin: 0 auto;     
 }
 
 .btn-printable {
@@ -24,15 +28,20 @@
     text-align: center;
 }
 
-.background-printable h5{
+.background-printable h5 {
     color: #ff6347;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: bold;
 }
 
+.background-printable p {
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+}
+
 .img-printable {
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* perfect square display */
+    object-fit: contain;   /* show full image */
     border-radius: 10px;
     margin-bottom: 15px;
-    width: 100%;
-    height: auto
 }

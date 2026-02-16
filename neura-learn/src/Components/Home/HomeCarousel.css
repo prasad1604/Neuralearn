@@ -1,13 +1,14 @@
 .carousel-caption h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.4rem, 4vw, 2.5rem);
     color: #FFD93D;
     font-family: 'Comic Sans MS', sans-serif;
 }
 
 .carousel-caption p {
-    font-size: 1.5rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
     color: #FFD93D;
 }
+
 
 .carousel-item img {
     border-radius: 10px;
@@ -40,3 +41,37 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
+
+@media (max-width: 768px) {
+.carousel-caption {
+    bottom: 20%;
+    padding: 0 1rem;
+}
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 260px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 260px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .carousel-caption h2 {
+    font-size: 1.4rem;
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem;
+  }
+}
+
+

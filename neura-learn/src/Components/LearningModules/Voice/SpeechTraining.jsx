@@ -179,6 +179,30 @@ const SpeechTraining = () => {
         1
       )}% score`
     );
+
+    // --- API call for /api/test ---
+    const stars = Math.min(5, Math.floor(pct / 20)); // 0-5 integer division
+    try {
+        const response = fetch("/api/test", {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ module: "Speech", marks: [stars], timestamps: [new Date().toISOString()] }),
+        });
+
+        if (!response.ok) {
+
+          console.error("Failed to save score:", response.status, response.text());
+          return;
+        }
+
+        console.log("Score saved successfully!");
+      } catch (err) {
+
+        console.error("Network error while saving score:", err);
+      }
   };
 
   const handleSubmit = async (textResponse) => {

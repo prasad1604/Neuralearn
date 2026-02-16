@@ -12,7 +12,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-kids">
+    <nav className="navbar navbar-expand-xl navbar-kids">
       <div className="container-fluid">
         <Link className="navbar-brand kids-logo" to="/">
           🌈 NeuraLearn 🍭
@@ -22,7 +22,7 @@ function Navbar() {
                 type="button" 
                 data-bs-toggle="collapse" 
                 data-bs-target="#navbarSupportedContent">
-          <span className="navbar-toggler-icon">🍔</span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

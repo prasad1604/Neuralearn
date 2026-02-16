@@ -110,3 +110,50 @@
     50% { transform: translateY(-20px) rotate(180deg); }
     100% { transform: translateY(0) rotate(360deg); }
 }
+
+
+@media (max-width: 768px) {
+
+    .kids-footer {
+        padding: 0.6rem;
+    }
+
+    .footer-section {
+        padding: 0.6rem 0.4rem;
+    }
+
+    .footer-title {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .footer-contact p {
+        font-size: 0.8rem;
+        margin: 0.3rem 0;
+    }
+
+    .footer-link {
+        font-size: 0.8rem;
+        margin: 0.3rem 0;
+    }
+
+    .copyright {
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    .social-icons {
+        gap: 0.8rem;
+    }
+
+    .social-icon {
+        font-size: 1.2rem;
+    }
+
+  
+    .floating-shapes {
+        display: none;
+    }
+
+}
+

@@ -1,7 +1,7 @@
 /* Background styling */
 .background-container {
     position: relative;
-    background: url('/Images/convo_back.jpg') no-repeat center top;
+    background: url('/Images/convo_back.jpg') center top no-repeat;
     background-size: cover;
     min-height: 100vh;
     width: 100%;
@@ -10,19 +10,19 @@
     font-family: 'Comic Neue', cursive;
 }
   
-/* Whiteboard container: locked into a fixed area of the canvas */
+
 .whiteboard-container {
     position: absolute;
-    top: 20%;
+    top: clamp(120px, 18vh, 220px);
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    max-width: 800px;
-    padding: 1.5rem;
+    width: clamp(280px, 80%, 800px);
+    padding: clamp(0.8rem, 2vw, 1.5rem);
+    border-radius: clamp(15px, 3vw, 30px);
     background: transparent;
-    border-radius: 30px;
     box-sizing: border-box;
 }
+
   
 /* Single-line question header with bordered score, question text, and counter */
 .question-header {
@@ -269,25 +269,6 @@ button:focus {
   margin-top: 1rem;
 }
   
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-    .question-text {
-        font-size: 1.4rem;
-    }
-    .toggle-btn {
-        font-size: 1rem;
-        padding: 0.8rem;
-    }
-    .whiteboard-container {
-        top: 10%;
-        width: 90%;
-    }
-}
-
-/* ============================= */
-/* Completion-screen (new rules) */
-/* ============================= */
-
 .completion-screen {
     position: fixed;
     top: 70%;
@@ -329,4 +310,144 @@ button:focus {
     font-size: 1.3rem;
 }
 
-/* The same analyze-btn styling will apply for the "Start New Session" button */
+
+@media (max-width: 1024px) {
+
+    .whiteboard-container {
+        padding: 1.2rem;
+        max-width: 650px;
+    }
+
+    .question-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .question-text {
+        font-size: 1.3rem;
+    }
+
+    .score-star,
+    .question-counter {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .toggle-btn {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .record-btn {
+        padding: 0.8rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    .text-input textarea {
+        padding: 1rem;
+        min-height: 90px;
+        font-size: 1rem;
+    }
+
+    .analyze-btn {
+        width: 13rem;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .feedback-box {
+        padding: 1.2rem;
+    }
+
+    .positive-message,
+    .improvement-message {
+        font-size: 1.3rem;
+    }
+
+    .completion-screen h2 {
+        font-size: 1.7rem;
+    }
+
+    .completion-screen p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+        .question-header {
+        display: flex;
+        flex-wrap: wrap;         
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+    }
+
+    .score-star {
+        order: 1;
+    }
+
+    .question-counter {
+        order: 2;        
+        text-align: center;
+        margin-top: 0.3rem;
+    }
+
+    .question-text {
+        order: 3;
+        flex: 1 1 auto;
+        margin: 0;
+        text-align: center;
+        font-size: 1rem;
+        width: 100%;     
+    }
+}
+
+@media (max-width: 480px) {
+
+    .background-container {
+        background: url('/Images/convo_back_vertical.png') center top no-repeat;
+        background-size: cover;
+    }
+
+    .whiteboard-container {
+        padding: 0rem;
+        max-width: 60%;
+    }
+
+    .score-star,
+    .question-counter {
+        font-size: 0.75rem;
+    }
+
+    .toggle-btn {
+        font-size: 0.75rem;
+        padding: 0.6rem;
+    }
+
+    .record-btn {
+        font-size: 0.75rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .analyze-btn {
+        width: 100%;
+        font-size: 0.75rem;
+    }
+
+    .text-input textarea {
+        font-size: 0.75rem;
+        min-height: 70px;
+    }
+
+    .positive-message,
+    .improvement-message {
+        font-size: 1rem;
+    }
+
+    .completion-screen h2 {
+        font-size: 1rem;
+    }
+
+    .completion-screen p {
+        font-size: 0.75rem;
+    }
+}

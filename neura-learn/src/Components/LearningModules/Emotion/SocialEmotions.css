@@ -7,7 +7,7 @@
 .social-emotions-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   text-align: center;
   min-height: 100vh;
   background: #c0e9ff;
@@ -18,12 +18,13 @@
 
 .app-title {
   color: #2b6cb0;
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 3vw, 1.8rem);
   margin-bottom: 1rem;
 }
 
+
 .app-description {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   font-weight: bold;
   color: rgb(75, 75, 75);
   margin-bottom: 20px;
@@ -34,7 +35,7 @@
   position: relative;
   width: 90%;
   /* 90% of the container or viewport width */
-  max-width: 530px;
+  max-width: 420px;
   /* Limits the width on larger screens */
   margin: 1rem auto;
   /* Center the container with auto side margins */
@@ -131,13 +132,27 @@
 
 .display-emotion {
   position: absolute;
-  top: 2rem;
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem 2rem;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  display: inline-flex;          /* keeps content horizontal */
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  white-space: nowrap;           /* prevents line break */
+  width: fit-content;            /* background fits text */
+  max-width: 90%;                /* prevents overflow on small screens */
+
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);  /* responsive text */
+  font-weight: 600;
 }
 
 /* Error Handling */
@@ -192,49 +207,56 @@
 
 .body-emotions img {
   display: block;
-  margin: 1rem auto;
-  margin-bottom: 2rem;
+  margin: 1rem auto 2rem auto;
   border: 3px solid black;
   border-radius: 10px;
-  width: 550px;
-  height: 550px;
+  width: min(100%, 550px);  
+  height: auto;            
+  aspect-ratio: 1 / 1;     
+  object-fit: cover;        
 }
 
 .response-message-emotions {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   font-weight: bold;
   text-align: center;
   color: #00c358;
 }
-.response-message-wrong{
-  font-size: 1.5rem;
+
+.response-message-wrong {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
   font-weight: bold;
   text-align: center;
   color: #ce2e2e;
 }
+
 .response-message-questions {
   margin-top: 1rem;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   font-weight: bold;
   text-align: center;
   color: #02a34b;
   background-color: white;
   border-radius: 10px;
   border: 3px solid black;
+  padding: 0.6rem 1rem;
 }
+
 .body-emotions h3{
   font-size: 1.3rem;
   font-weight: bold;
   color: rgb(75, 75, 75);
   margin-bottom: 20px;
 }
-.description-card{
-  font-size: 1.3rem;
+
+.description-card {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
   font-weight: bold;
   color: rgb(75, 75, 75);
   border: 3px solid black;
   background-color: whitesmoke;
   border-radius: 10px;
   margin: 20px auto;
-  padding: 3px;
+  padding: 0.5rem 1rem;
 }
+

@@ -19,5 +19,7 @@ class UserProfile(BaseModel):
     favoriteCartoon: Optional[str] = None
 
 class TestResults(BaseModel):
-    module: Optional[str]
+    user_id: Optional[str] = None 
+    module: Optional[str] = None  
     marks: List[int]
+    timestamps: List[str]          

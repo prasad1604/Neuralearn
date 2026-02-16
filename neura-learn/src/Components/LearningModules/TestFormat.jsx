@@ -57,8 +57,14 @@ const TestFormat = ({ title, questions = [], renderQuestion, link }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ module: title, marks: [score] }),
+          
+          body: JSON.stringify({
+            module: title,
+            marks: [score],                        
+            timestamps: [new Date().toISOString()]   
+          })
         });
+        console.log(response);
 
         if (!response.ok) {
   

@@ -49,7 +49,7 @@ const Login = () => {
         </div>
 
         <h2 style={{ color: "#ff6b6b", fontFamily: "'Bubblegum Sans', cursive" }}>
-          Let's Play Again! 🎈
+          Let's Play Again!🎈
         </h2>
 
         {error && <div className="error-message" style={{ background: "#fff3cd", borderRadius: "20px" }}>🐻❄️ {error}</div>}
@@ -104,7 +104,7 @@ const Login = () => {
               Remember me 😊
             </label>
             <Link to="/forgot-password" style={{ color: "#ff6b6b", textDecoration: "underline wavy" }}>
-              Forgot Password? 🎈
+              Forgot Password?🎈
             </Link>
           </div>
 
@@ -124,7 +124,7 @@ const Login = () => {
         </form>
 
         <div className="signup-link" style={{ color: "#4d4d4d" }}>
-          New friend? <Link to="/Signup" style={{ color: "#4ecdc4", fontWeight: "bold" }}>Join the Party! 🎈</Link>
+          New friend? <Link to="/Signup" style={{ color: "#4ecdc4", fontWeight: "bold", textDecoration: "underline wavy" }}>Join the Party!🎈</Link>
         </div>
 
         <div className="decorations">

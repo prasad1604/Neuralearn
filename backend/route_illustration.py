@@ -67,14 +67,16 @@ def make_image_url(
     width: int = 896,
     height: int = 896,
     seed: Optional[int] = None,
-    model: Optional[str] = "flux",
+    model: Optional[str] = None,
     nologo: bool = True
 ) -> str:
 
     api_key = os.getenv("POLLINATIONS_TOKEN")
 
-    # CRITICAL: shorten prompt (Pollinations fails silently on long prompts)
     safe_prompt = prompt[:500]
+
+    # ✅ ALWAYS ensure valid model
+    model = model or "gptimage"
 
     params = [
         f"model={model}",
@@ -98,7 +100,8 @@ def make_image_url(
 
 def stable_seed_from_key(*parts: str) -> int:
     h = hashlib.sha256("|".join(parts).encode("utf-8")).hexdigest()
-    return int(h[:8], 16)
+    return int(h[:8], 16) % 2147483647
+
 
 
 # ==============================

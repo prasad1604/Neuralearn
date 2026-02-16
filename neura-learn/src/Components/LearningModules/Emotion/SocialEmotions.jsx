@@ -106,7 +106,7 @@ const SocialEmotions = () => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ module: "Emotions", marks: [score] }),
+          body: JSON.stringify({ module: "Emotions", marks: [score], timestamps: [new Date().toISOString()] }),
         });
 
         if (!response.ok) {
